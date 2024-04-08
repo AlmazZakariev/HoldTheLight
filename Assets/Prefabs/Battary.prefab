@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4669303917813418907}
   m_Layer: 0
   m_Name: Battary
-  m_TagString: Untagged
   m_TagString: PickUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
