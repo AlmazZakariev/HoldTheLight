@@ -128,6 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   jumpForce: 9
+  jumpCost: 3
   gravityModifier: 2
   horizontalInput: 0
   movingSpeed: 10

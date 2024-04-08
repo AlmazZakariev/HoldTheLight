@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
-
+//TODO: баг. Если прыгнуть в самом начале, прыжок не кончается
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D playerRb;
     public float speed = 10.0f;
     public float jumpForce = 10.0f;
+    public float jumpCost;
     public float gravityModifier = 1.0f;
 
     public float horizontalInput;
@@ -20,11 +22,13 @@ public class PlayerController : MonoBehaviour
     // Переводим на ложь, пока на платформе. И вместе с этим отключаем движенеи вниз
     // После выхода из платформы возвращаем обратно на истину.
     private bool falling = true;
-
+    // gameManager для управления количеством света от подбора батарейки. 
+    private GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
         
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         playerRb = GetComponent<Rigidbody2D>();
         jumpStats = new JumpStats(playerRb);
     }
@@ -77,8 +81,11 @@ public class PlayerController : MonoBehaviour
     }
     private void MakeOneJump(float speed)
     {
-        playerRb.AddForce(Vector3.up * speed, ForceMode2D.Impulse);
-        jumpStats.TurnOn(gravityModifier);
+        if (gameManager.AddLight(-jumpCost))
+        {
+            playerRb.AddForce(Vector3.up * speed, ForceMode2D.Impulse);
+            jumpStats.TurnOn(gravityModifier);
+        }      
     }
     private void JumpingEnded()
     {
@@ -88,6 +95,12 @@ public class PlayerController : MonoBehaviour
             jumpStats.TurnOff();
         }
     }
+    public void GameOver()
+    {
+        speed = 0;
+        movingSpeed= 0;
+        jumpForce= 0;
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Для проверки попадания на платформу
@@ -95,6 +108,14 @@ public class PlayerController : MonoBehaviour
         {
             falling = false;
         }
+        // Для проверки подбора батарейки UPD перенёс в BataryController
+        //if (collision.gameObject.CompareTag("Battery"))
+        //{
+        //    Debug.Log("BATARY");
+
+        //    Destroy(collision.gameObject);
+        //    gameManager.AddLight(0);
+        //}
     }
     
     private void OnCollisionExit2D(Collision2D collision)
@@ -103,7 +124,10 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Platform"))
         {
             falling = true;
+            
         }
+
+        
     }
 }
 // Класс для определения направления полёта плеера
