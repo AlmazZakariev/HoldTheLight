@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class PlayerController : MonoBehaviour
 
     private LastYPos lastYPos = new LastYPos();
     private JumpStats jumpStats;
+    // Ключ добавлен вместе с реакцией на платформу.
+    // Переводим на ложь, пока на платформе. И вместе с этим отключаем движенеи вниз
+    // После выхода из платформы возвращаем обратно на истину.
+    private bool falling = true;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +33,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // Свободное падения вниз     
-        if (!jumpStats.IsJumping())
+        if (!jumpStats.IsJumping()&&falling)
         {
             transform.Translate(Vector3.down * Time.deltaTime * speed);
             //playerRb.AddForce(Vector3.down * speed, ForceMode2D.Force);
@@ -62,10 +67,11 @@ public class PlayerController : MonoBehaviour
             JumpingEnded();
         }
         // Исполнение прыжка
-        if (jumpStats.IsNeedMakeJump(true))
+        if (jumpStats.IsNeedMakeJump(true)&&!jumpStats.IsJumping())
         {
             MakeOneJump(jumpForce);
         }
+      
         // Запоминаем координату Y для определения направления
         lastYPos.SetNext(transform.position.y);
     }
@@ -82,7 +88,23 @@ public class PlayerController : MonoBehaviour
             jumpStats.TurnOff();
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Для проверки попадания на платформу
+        if (collision.gameObject.CompareTag("Platform"))
+        {
+            falling = false;
+        }
+    }
     
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        // Для проверки выхода из платформы
+        if (collision.gameObject.CompareTag("Platform"))
+        {
+            falling = true;
+        }
+    }
 }
 // Класс для определения направления полёта плеера
 // Надо тестить больше, но вроде Direction2 работает норм
@@ -105,7 +127,14 @@ class LastYPos
     {
         return currY > PrevPrevY;
     }
-
+    public bool Stopped()
+    {
+        return PrevY == PrevPrevY;
+    }
+    public bool Stopped2(float currY)
+    {
+        return PrevY == PrevPrevY;
+    }
 }
 // Класс хранит все переменные, связанные с прыжком
 class JumpStats
@@ -165,4 +194,6 @@ class JumpStats
     {
         NeedMakeJump = true;
     }
+
+    
 }
