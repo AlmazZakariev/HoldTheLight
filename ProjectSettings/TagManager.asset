@@ -7,6 +7,7 @@ TagManager:
   - Platform
   - PickUp
   - Battery
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -50,6 +51,9 @@ TagManager:
   - name: items
     uniqueID: 648871299
     locked: 0
-  - name: player
+  - name: creature
     uniqueID: 1318731627
+    locked: 0
+  - name: UI
+    uniqueID: 588730825
     locked: 0

@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
 
     private LastYPos lastYPos = new LastYPos();
     private JumpStats jumpStats;
+    private bool gameOver = false;
     // Ключ добавлен вместе с реакцией на платформу.
     // Переводим на ложь, пока на платформе. И вместе с этим отключаем движенеи вниз
     // После выхода из платформы возвращаем обратно на истину.
@@ -36,6 +37,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameOver)
+        {
+            return;
+        }
         // Свободное падения вниз     
         if (!jumpStats.IsJumping()&&falling)
         {
@@ -65,6 +70,10 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (gameOver)
+        {
+            return;
+        }
         // Проверяем закончился ли импульс прыжка, чтобы продолжить падение.
         if (jumpStats.IsJumping())
         {
@@ -97,9 +106,10 @@ public class PlayerController : MonoBehaviour
     }
     public void GameOver()
     {
+        gameOver = true;
         speed = 0;
-        movingSpeed= 0;
-        jumpForce= 0;
+        movingSpeed = 0;
+        jumpForce = 0;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -116,6 +126,12 @@ public class PlayerController : MonoBehaviour
         //    Destroy(collision.gameObject);
         //    gameManager.AddLight(0);
         //}
+        // Для проверки удара с врагом
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            
+            gameManager.GameOver();
+        }
     }
     
     private void OnCollisionExit2D(Collision2D collision)
