@@ -174,14 +174,14 @@ class LastYPos
     {
         return currY > PrevPrevY;
     }
-    public bool Stopped()
-    {
-        return PrevY == PrevPrevY;
-    }
-    public bool Stopped2(float currY)
-    {
-        return PrevY == PrevPrevY;
-    }
+    //public bool Stopped()
+    //{
+    //    return PrevY == PrevPrevY;
+    //}
+    //public bool Stopped2(float currY)
+    //{
+    //    return PrevY == PrevPrevY;
+    //}
 }
 // Класс хранит все переменные, связанные с прыжком
 class JumpStats
@@ -209,6 +209,9 @@ class JumpStats
     {
         PlayerRb.gravityScale = 0;
         Jumping = false;
+        var velocity = PlayerRb.velocity;
+        velocity.y = 0;
+        PlayerRb.velocity = velocity;
     }
     // Возвращаем состояние прыжка
     public bool IsJumping()
