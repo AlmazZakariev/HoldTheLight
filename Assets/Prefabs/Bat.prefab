@@ -143,5 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7b90a6a2df92dc469b1cbdb3b2baac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  patrolingDistance: 10
+  speed: 3.5
+  patrolingDistance: 6
+  patrolingPoint: {fileID: 0}
+  angerDistance: 5
