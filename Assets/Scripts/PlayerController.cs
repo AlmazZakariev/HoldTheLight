@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     private bool falling = true;
     // gameManager для управления количеством света от подбора батарейки. 
     private GameManager gameManager;
+    // для вызова атаки во время прыжка
+    private PlayerAttack playerAttackScript;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,8 @@ public class PlayerController : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         playerRb = GetComponent<Rigidbody2D>();
         jumpStats = new JumpStats(playerRb);
+
+        playerAttackScript = GameObject.Find("Player").GetComponent<PlayerAttack>();
     }
 
     // Update is called once per frame
@@ -94,6 +98,9 @@ public class PlayerController : MonoBehaviour
         {
             playerRb.AddForce(Vector3.up * speed, ForceMode2D.Impulse);
             jumpStats.TurnOn(gravityModifier);
+
+            // атака
+            playerAttackScript.Attack();
         }      
     }
     private void JumpingEnded()
