@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -7,22 +8,31 @@ using UnityEngine.SocialPlatforms.Impl;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D playerRb;
-    public float speed = 10.0f;
+
+    public float currentSpeed;
+    public float maxSpeed = 10.0f;
+    public float forcingDownMaxSpeed = 20;
+
+    public float movingSpeed = 10.0f;
+    private float horizontalInput;
+    public float xRange = 10.0f;
+
     public float jumpForce = 10.0f;
     public float jumpCost;
-    public float gravityModifier = 1.0f;
 
-    public float horizontalInput;
-    public float movingSpeed = 10.0f;
-    public float xRange = 10.0f;
+    public float forceDownSpeed = 3f;
+    public float forcingTime = 2;
+   
 
     private LastYPos lastYPos = new LastYPos();
     private JumpStats jumpStats;
+
     private bool gameOver = false;
     // Ключ добавлен вместе с реакцией на платформу.
     // Переводим на ложь, пока на платформе. И вместе с этим отключаем движенеи вниз
     // После выхода из платформы возвращаем обратно на истину.
     private bool falling = true;
+
     // gameManager для управления количеством света от подбора батарейки. 
     private GameManager gameManager;
     // для вызова атаки во время прыжка
@@ -30,7 +40,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+    
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         playerRb = GetComponent<Rigidbody2D>();
         jumpStats = new JumpStats(playerRb);
@@ -45,10 +55,17 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
+        var currentMaxSpeed = SetCurrentMaxSpeed();
+        currentSpeed = playerRb.velocity.y;
         // Свободное падения вниз     
         if (!jumpStats.IsJumping()&&falling)
         {
-            transform.Translate(Vector3.down * Time.deltaTime * speed);
+            if (playerRb.velocity.y<-maxSpeed)
+            {
+                jumpStats.SetZeroVelocity(-currentMaxSpeed);
+            }
+            
+            //transform.Translate(Vector3.down * Time.deltaTime * speed);
             //playerRb.AddForce(Vector3.down * speed, ForceMode2D.Force);
         }
         // Активация прыжка, сам прыжок исполняется из FixedUpdate
@@ -71,7 +88,24 @@ public class PlayerController : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * Time.deltaTime * horizontalInput * movingSpeed);
 
+        //Активация ускорения вниз
+        if (!jumpStats.IsNeedFroceDown(false) && Input.GetKeyDown(KeyCode.S) && !jumpStats.IsForcingDown())
+        {
+            jumpStats.ForcingDown = true;
+            Invoke("StopForcingDown", forcingTime);
+        }
+
     }
+
+    private float SetCurrentMaxSpeed()
+    {
+        if (jumpStats.IsForcingDown())
+        {
+            return forcingDownMaxSpeed;
+        }
+        return maxSpeed;
+    }
+
     private void FixedUpdate()
     {
         if (gameOver)
@@ -88,16 +122,30 @@ public class PlayerController : MonoBehaviour
         {
             MakeOneJump(jumpForce);
         }
-      
+        if (jumpStats.IsForcingDown())
+        {
+            playerRb.AddForce(Vector2.down * forceDownSpeed, ForceMode2D.Force);
+        }
+        
         // Запоминаем координату Y для определения направления
         lastYPos.SetNext(transform.position.y);
+    }
+    private void StopForcingDown()
+    {
+        jumpStats.ForcingDown = false;
+    }
+    private void MakeFroceDown(float forceSpeed)
+    {
+        playerRb.AddForce(Vector2.down * forceSpeed, ForceMode2D.Impulse);
+        //playerRb.AddForce(Vector3.down * forceSpeed, ForceMode2D.Force);
     }
     private void MakeOneJump(float speed)
     {
         if (gameManager.AddLight(-jumpCost))
         {
+            jumpStats.TurnOn();
             playerRb.AddForce(Vector3.up * speed, ForceMode2D.Impulse);
-            jumpStats.TurnOn(gravityModifier);
+            
 
             // атака
             playerAttackScript.Attack();
@@ -107,16 +155,18 @@ public class PlayerController : MonoBehaviour
     {
         if (!lastYPos.Direction2(transform.position.y))
         {
-            playerRb.gravityScale = 0;
+           // playerRb.gravityScale = 0;
             jumpStats.TurnOff();
         }
     }
     public void GameOver()
     {
         gameOver = true;
-        speed = 0;
+        //speed = 0;
         movingSpeed = 0;
         jumpForce = 0;
+        jumpStats.SetZeroVelocity();
+        playerRb.gravityScale = 0;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -125,14 +175,7 @@ public class PlayerController : MonoBehaviour
         {
             falling = false;
         }
-        // Для проверки подбора батарейки UPD перенёс в BataryController
-        //if (collision.gameObject.CompareTag("Battery"))
-        //{
-        //    Debug.Log("BATARY");
-
-        //    Destroy(collision.gameObject);
-        //    gameManager.AddLight(0);
-        //}
+ 
         // Для проверки удара с врагом
         if (collision.gameObject.CompareTag("Enemy"))
         {
@@ -174,14 +217,6 @@ class LastYPos
     {
         return currY > PrevPrevY;
     }
-    //public bool Stopped()
-    //{
-    //    return PrevY == PrevPrevY;
-    //}
-    //public bool Stopped2(float currY)
-    //{
-    //    return PrevY == PrevPrevY;
-    //}
 }
 // Класс хранит все переменные, связанные с прыжком
 class JumpStats
@@ -191,6 +226,8 @@ class JumpStats
     bool Jumping { get; set; }
     // Для активации прыжка
     bool NeedMakeJump { get; set; }
+    public bool ForcingDown { get; set; } = false;
+    bool NeedForceDown { get; set; }
     public JumpStats(Rigidbody2D playerRb)
     {
         PlayerRb = playerRb;
@@ -199,18 +236,23 @@ class JumpStats
     }
     // Вызываем при начале прыжка.
     // Включется гравитация и состояние прыжка
-    public void TurnOn(float gravityMod)
+    public void TurnOn()
     {
-        PlayerRb.gravityScale = gravityMod;
-        Jumping= true;      
+        //PlayerRb.gravityScale = gravityMod;
+        SetZeroVelocity();
+        Jumping = true;      
     }
     // Вызываем при завершении прыжка
     public void TurnOff()
     {
-        PlayerRb.gravityScale = 0;
+        //PlayerRb.gravityScale = 0;
         Jumping = false;
+        //SetZeroVelocity();
+    }
+    public void SetZeroVelocity(float speed = 0)
+    {
         var velocity = PlayerRb.velocity;
-        velocity.y = 0;
+        velocity.y = speed;
         PlayerRb.velocity = velocity;
     }
     // Возвращаем состояние прыжка
@@ -245,5 +287,25 @@ class JumpStats
         NeedMakeJump = true;
     }
 
-    
+    public bool IsNeedFroceDown(bool reset)
+    {
+        if (reset)
+        {
+            if (NeedForceDown)
+            {
+                NeedForceDown = false;
+                return true;
+            }
+            return false;
+        }
+        else
+        {
+            return NeedForceDown;
+        }
+    }
+    public bool IsForcingDown()
+    {
+        return ForcingDown;
+    }
+  
 }
