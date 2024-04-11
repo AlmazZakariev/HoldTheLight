@@ -21,7 +21,7 @@ public class BackgroundMove : MonoBehaviour
             var pos = backgroundImg.transform.position;
             pos.y = nextYPosition;
             Instantiate(backgroundImg, pos, backgroundImg.transform.rotation);
-            nextYPosition+=
+            nextYPosition += 20;
         }
     }
 }
