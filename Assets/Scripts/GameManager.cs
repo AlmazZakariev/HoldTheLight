@@ -9,7 +9,12 @@ public class GameManager : MonoBehaviour
     public float maxLight = 30f;
     public float currentLight;
     public float scalePerSecond = 1f;
-    public float test = 0;
+    
+    public GameObject player;
+    public GameObject backgroundImg;
+    public float nextYPosition = 17f;
+    public float bgSize = 17;
+    public float newBGDist = 20;
 
     public Image lightBar;
     private PlayerController playerController;
@@ -30,11 +35,19 @@ public class GameManager : MonoBehaviour
             return;
         }
         currentLight -= scalePerSecond*Time.deltaTime;
-        test = currentLight / maxLight;
-        lightBar.fillAmount = test;
+        lightBar.fillAmount = currentLight / maxLight;
         if (currentLight <= 0)
         {
             GameOver();
+        }
+
+        //background control
+        if (player.transform.position.y - nextYPosition < newBGDist)
+        {
+            var pos = backgroundImg.transform.position;
+            pos.y = nextYPosition;
+            Instantiate(backgroundImg, pos, backgroundImg.transform.rotation);
+            nextYPosition -= bgSize;
         }
     }
     public bool AddLight(float value)

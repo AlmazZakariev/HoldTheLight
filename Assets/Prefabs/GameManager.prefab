@@ -47,6 +47,10 @@ MonoBehaviour:
   maxLight: 30
   currentLight: 0
   scalePerSecond: 2
-  test: 0
+  player: {fileID: 0}
+  backgroundImg: {fileID: 6419705189509543860, guid: a4ec07059ec609847b59caa724b7421e, type: 3}
+  nextYPosition: 17
+  bgSize: 17
+  newBGDist: 20
   lightBar: {fileID: 0}
   textGameOver: {fileID: 0}
