@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MobPatroler : MonoBehaviour
@@ -14,14 +12,6 @@ public class MobPatroler : MonoBehaviour
     bool movinRight = true;
     float patrolingDistanceDeltaY = 2;
 
-    enum Status
-    {
-        PATROLING,
-        AGGRESSIVE,
-        GOING_BACK,
-        DEAD,
-        DESPAWNED
-    };
     // Start is called before the first frame update
     void Start()
     {
