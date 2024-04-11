@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/AlmazScene.unity
+    path: Assets/Scenes/AlmScenes/AlmazScene.unity
     guid: ec2fec3339a536c40b3cb129ff5cc1ac
   m_configObjects: {}

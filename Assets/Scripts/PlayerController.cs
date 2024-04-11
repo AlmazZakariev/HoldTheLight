@@ -16,14 +16,15 @@ public class PlayerController : MonoBehaviour
     public float movingSpeed = 10.0f;
     private float horizontalInput;
     public float xRange = 10.0f;
+    private bool facingLeft = true;
 
     public float jumpForce = 10.0f;
     public float jumpCost;
 
     public float forceDownSpeed = 3f;
     public float forcingTime = 2;
-   
 
+    public Animator animator;
     private LastYPos lastYPos = new LastYPos();
     private JumpStats jumpStats;
 
@@ -95,8 +96,25 @@ public class PlayerController : MonoBehaviour
             Invoke("StopForcingDown", forcingTime);
         }
 
+        animator.SetBool("OnGround", currentSpeed == 0);
+        animator.SetFloat("HorizontalMove", Mathf.Abs(horizontalInput));
+        if(horizontalInput> 0&& facingLeft)
+        {
+            Flip();
+        }
+        if (horizontalInput < 0 && !facingLeft)
+        {
+            Flip();
+        }
     }
+    private void Flip()
+    {
+        facingLeft = !facingLeft;
 
+        Vector2 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
+    }
     private float SetCurrentMaxSpeed()
     {
         if (jumpStats.IsForcingDown())
@@ -167,6 +185,7 @@ public class PlayerController : MonoBehaviour
         jumpForce = 0;
         jumpStats.SetZeroVelocity();
         playerRb.gravityScale = 0;
+        animator.gameObject.SetActive(false);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
