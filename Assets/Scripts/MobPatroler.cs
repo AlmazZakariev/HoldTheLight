@@ -60,7 +60,6 @@ public class MobPatroler : MonoBehaviour
     
     private void performAction()
     {
-        Debug.Log(status);
         switch (status)
         {
             case Status.PATROLING:
