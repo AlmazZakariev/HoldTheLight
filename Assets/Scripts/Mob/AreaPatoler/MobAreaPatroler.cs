@@ -42,7 +42,6 @@ public class MobAreaPatroler : MonoBehaviour
 
     private void performAction()
     {
-        Debug.Log(status);
         switch (status)
         {
             case Status.PATROLING:
