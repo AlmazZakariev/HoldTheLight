@@ -19,7 +19,8 @@ public class GameManager : MonoBehaviour
     public Image lightBar;
     private PlayerController playerController;
     public GameObject textGameOver;
-    private bool gameOver = false;
+    public GameObject gameOverMenu;
+    public bool gameOver = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -63,6 +64,6 @@ public class GameManager : MonoBehaviour
     {
         gameOver = true;
         playerController.GameOver();
-        textGameOver.SetActive(true);
+        gameOverMenu.SetActive(true);
     }
 }
