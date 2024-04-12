@@ -170,7 +170,7 @@ public class PlayerController : MonoBehaviour
             
 
             // атака
-            playerAttackScript.Attack();
+            playerAttackScript.attackLightActive = true;
             attackLight.SetActive(true);
             Invoke("TurnOffAttackLight", attackLightTime);
         }      
@@ -178,6 +178,7 @@ public class PlayerController : MonoBehaviour
     private void TurnOffAttackLight()
     {
         attackLight.SetActive(false);
+        playerAttackScript.attackLightActive = false;
     }
     private void JumpingEnded()
     {

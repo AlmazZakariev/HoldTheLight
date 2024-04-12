@@ -11,6 +11,7 @@ public class PlayerAttack : MonoBehaviour
 
     public float attackRangeX;
     public float attackRangeY;
+    public bool attackLightActive;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +21,10 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (attackLightActive)
+        {
+            Attack();
+        }
     }
     public void Attack()
     {

@@ -9647,6 +9647,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3047775448445411336, guid: 6bddfe0931cdf5d45a3acb7e9cab33d8, type: 3}
+      propertyPath: attackLightTime
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 5054910998028005847, guid: 6bddfe0931cdf5d45a3acb7e9cab33d8, type: 3}
       propertyPath: m_Name
       value: Player
