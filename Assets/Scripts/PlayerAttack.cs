@@ -9,6 +9,8 @@ public class PlayerAttack : MonoBehaviour
     public LayerMask enemy;
     public float attackRange;
 
+    public float attackRangeX;
+    public float attackRangeY;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,16 +24,25 @@ public class PlayerAttack : MonoBehaviour
     }
     public void Attack()
     {
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPosition.position, attackRange, enemy);
+        
+        
+        
+        //Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPosition.position, attackRange, enemy);
+        Collider2D[] enemies = Physics2D.OverlapCapsuleAll(attackPosition.position, new Vector2(attackRangeX, attackRangeY), new CapsuleDirection2D(), enemy);
         for (var i=0; i<enemies.Length;i++) 
         {
-            var a = enemies[i].GameObject();
-            Destroy(a);
+            var target = enemies[i].GameObject();
+            if (target.CompareTag("Enemy"))
+            {
+                Destroy(target);
+            }
+            ;
         }
     }
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPosition.position, attackRange);
+        Gizmos.DrawWireCube(attackPosition.position, new Vector3(attackRangeX, attackRangeY, 0));
     }
 }
