@@ -42,7 +42,7 @@ public class Projectile : MonoBehaviour
     {
         // Здесь можно реализовать логику при попадании в игрока
         // Например, нанести урон, оглушить, замедлить, etc.
-        Debug.Log("плейер получил в ебло");
+        Debug.Log("player got hit");
         Destroy(gameObject);
     }
 
