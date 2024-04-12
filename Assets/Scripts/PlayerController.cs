@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
@@ -23,6 +24,9 @@ public class PlayerController : MonoBehaviour
 
     public float forceDownSpeed = 3f;
     public float forcingTime = 2;
+
+    public float attackLightTime;
+    public GameObject attackLight;
 
     public Animator animator;
     private LastYPos lastYPos = new LastYPos();
@@ -167,7 +171,13 @@ public class PlayerController : MonoBehaviour
 
             // атака
             playerAttackScript.Attack();
+            attackLight.SetActive(true);
+            Invoke("TurnOffAttackLight", attackLightTime);
         }      
+    }
+    private void TurnOffAttackLight()
+    {
+        attackLight.SetActive(false);
     }
     private void JumpingEnded()
     {
