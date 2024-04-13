@@ -4,19 +4,20 @@ public class MobPatroler : MonoBehaviour
 {
     public float speed;
     public float patrolingDistance;
-    public Transform patrolingPoint;
     public float angerDistance;
 
     Status status;
     Transform playerTransform;
     bool movinRight = true;
     float patrolingDistanceDeltaY = 2;
+    Vector2 patrolingPoint;
 
     // Start is called before the first frame update
     void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         status = Status.PATROLING;
+        patrolingPoint = transform.position;
     }
 
     // Update is called once per frame
@@ -75,11 +76,11 @@ public class MobPatroler : MonoBehaviour
             transform.Translate(Vector3.left * Time.deltaTime * speed);
         }
 
-        if (transform.position.x >= patrolingPoint.position.x + patrolingDistance)
+        if (transform.position.x >= patrolingPoint.x + patrolingDistance)
         {
             movinRight = false;
         }
-        else if (transform.position.x <= patrolingPoint.position.x - patrolingDistance)
+        else if (transform.position.x <= patrolingPoint.x - patrolingDistance)
         {
             movinRight = true;
         }
@@ -87,8 +88,8 @@ public class MobPatroler : MonoBehaviour
 
     private bool isInPatrolingArea()
     {
-        return Mathf.Abs(transform.position.x - patrolingPoint.position.x) <= patrolingDistance &&
-            Mathf.Abs(transform.position.y - patrolingPoint.position.y) <= patrolingDistanceDeltaY;
+        return Mathf.Abs(transform.position.x - patrolingPoint.x) <= patrolingDistance &&
+            Mathf.Abs(transform.position.y - patrolingPoint.y) <= patrolingDistanceDeltaY;
     }
 
     private void doFollowPlayer()
@@ -98,6 +99,6 @@ public class MobPatroler : MonoBehaviour
 
     private void doGoBack()
     {
-        transform.position = Vector2.MoveTowards(transform.position, patrolingPoint.position, speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, patrolingPoint, speed * Time.deltaTime);
     }
 }
