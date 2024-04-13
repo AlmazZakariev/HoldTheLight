@@ -398,6 +398,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 5625762810651519969}
+    - target: {fileID: 8580508296814702749, guid: 62f09335267e77f44b374f1544ead75c, type: 3}
+      propertyPath: VerticalScene
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8580508296814702749, guid: 62f09335267e77f44b374f1544ead75c, type: 3}
+      propertyPath: isVerticalScene
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -493,6 +501,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5335074399863219340, guid: eb1a56ad699e3d04a9e612705cb4d37f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 6.13
+      objectReference: {fileID: 0}
     - target: {fileID: 5335074399863219340, guid: eb1a56ad699e3d04a9e612705cb4d37f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

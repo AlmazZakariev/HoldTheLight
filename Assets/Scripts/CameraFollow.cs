@@ -5,25 +5,32 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     public GameObject player;
-    public float offsetY;
-    public float check;
+    private Vector3 offset;
+    public bool VerticalScene;
     // Start is called before the first frame update
     void Start()
     {
-        SetOffet();
+        SetOffset();
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
         var position = transform.position;
-        check = offsetY + player.transform.position.y;
-        position.y = offsetY+player.transform.position.y;
+        if (VerticalScene)
+        { 
+            position.y = offset.y + player.transform.position.y;
+            
+        }
+        else
+        {
+            position.x = offset.x + player.transform.position.x;
+        }
         transform.position = position;
 
     }
-    void SetOffet()
-    {
-        offsetY = transform.position.y;
+    void SetOffset()
+    {      
+        offset = transform.position;
     }
 }
