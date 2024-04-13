@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
@@ -24,6 +25,9 @@ public class PlayerController : MonoBehaviour
     public float forceDownSpeed = 3f;
     public float forcingTime = 2;
 
+    public float attackLightTime;
+    public GameObject attackLight;
+
     public Animator animator;
     private LastYPos lastYPos = new LastYPos();
     private JumpStats jumpStats;
@@ -38,6 +42,8 @@ public class PlayerController : MonoBehaviour
     private GameManager gameManager;
     // для вызова атаки во время прыжка
     private PlayerAttack playerAttackScript;
+    // для всплывающих окон
+    private MessageManager messageManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,12 +53,21 @@ public class PlayerController : MonoBehaviour
         jumpStats = new JumpStats(playerRb);
 
         playerAttackScript = GameObject.Find("Player").GetComponent<PlayerAttack>();
+        messageManager = GameObject.Find("Message").GetComponent<MessageManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gameOver)
+        // выключение всплывающего окошка
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (messageManager.messageActive)
+            {
+                MessageManager.disableMessageEvent?.Invoke();
+            }
+        }
+        if (gameOver||messageManager.messageActive)
         {
             return;
         }
@@ -74,7 +89,7 @@ public class PlayerController : MonoBehaviour
         {
             jumpStats.SetNeedMakeJump();
         }
-
+       
         // Барьер слева
         if (transform.position.x < -xRange)
         {
@@ -166,8 +181,15 @@ public class PlayerController : MonoBehaviour
             
 
             // атака
-            playerAttackScript.Attack();
+            playerAttackScript.attackLightActive = true;
+            attackLight.SetActive(true);
+            Invoke("TurnOffAttackLight", attackLightTime);
         }      
+    }
+    private void TurnOffAttackLight()
+    {
+        attackLight.SetActive(false);
+        playerAttackScript.attackLightActive = false;
     }
     private void JumpingEnded()
     {
