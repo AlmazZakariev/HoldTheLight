@@ -57,6 +57,9 @@ TagManager:
   - name: creature
     uniqueID: 1318731627
     locked: 0
+  - name: PlatformCovering
+    uniqueID: 566418925
+    locked: 0
   - name: UI
     uniqueID: 588730825
     locked: 0
