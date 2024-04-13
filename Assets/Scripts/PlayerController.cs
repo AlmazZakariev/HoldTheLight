@@ -42,6 +42,8 @@ public class PlayerController : MonoBehaviour
     private GameManager gameManager;
     // для вызова атаки во время прыжка
     private PlayerAttack playerAttackScript;
+    // для всплывающих окон
+    private MessageManager messageManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -51,12 +53,21 @@ public class PlayerController : MonoBehaviour
         jumpStats = new JumpStats(playerRb);
 
         playerAttackScript = GameObject.Find("Player").GetComponent<PlayerAttack>();
+        messageManager = GameObject.Find("Message").GetComponent<MessageManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gameOver)
+        // выключение всплывающего окошка
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (messageManager.messageActive)
+            {
+                MessageManager.disableMessageEvent?.Invoke();
+            }
+        }
+        if (gameOver||messageManager.messageActive)
         {
             return;
         }
@@ -78,7 +89,7 @@ public class PlayerController : MonoBehaviour
         {
             jumpStats.SetNeedMakeJump();
         }
-
+       
         // Барьер слева
         if (transform.position.x < -xRange)
         {
