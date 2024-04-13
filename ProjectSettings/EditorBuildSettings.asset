@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/1 2.unity
     guid: 3869f9a7897401a46ad9833be6fee0f5
+  - enabled: 1
+    path: Assets/Scenes/AlmScenes/lightTest.unity
+    guid: dcdbfaabb0193c14aad3b57bbca05bae
   m_configObjects: {}
