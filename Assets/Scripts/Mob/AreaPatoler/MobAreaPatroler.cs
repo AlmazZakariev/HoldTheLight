@@ -5,6 +5,7 @@ public class MobAreaPatroler : MonoBehaviour
 {
     public GameObject patrolingArea;
     public float speed;
+    public Animator animator;
 
     Status status;
     Transform playerTransform;
@@ -21,6 +22,7 @@ public class MobAreaPatroler : MonoBehaviour
 
     void Update()
     {
+        animator.SetFloat("HorizontalMove", 0);
         calculateStatus();
         performAction();
     }
@@ -63,6 +65,9 @@ public class MobAreaPatroler : MonoBehaviour
             }
             else
             {
+                var localScaleModifier = (-transform.position.x + patrolingAreaPointOperations.getCurrentPoint().x) * transform.localScale.x < 0 ? -1 : 1;
+                transform.localScale = new Vector3(transform.localScale.x * localScaleModifier, transform.localScale.y, transform.localScale.z);
+                animator.SetFloat("HorizontalMove", Mathf.Abs(transform.position.x - patrolingAreaPointOperations.getCurrentPoint().x) * speed * Time.deltaTime);
                 transform.position = Vector2.MoveTowards(transform.position,
                     patrolingAreaPointOperations.getCurrentPoint(), speed * Time.deltaTime);
             }
@@ -77,7 +82,11 @@ public class MobAreaPatroler : MonoBehaviour
 
     private void doFollowPlayer()
     {
+        var localScaleModifier = (-transform.position.x + playerTransform.position.x) * transform.localScale.x < 0 ? -1 : 1;
+        transform.localScale = new Vector3(transform.localScale.x * localScaleModifier, transform.localScale.y, transform.localScale.z);
+        animator.SetFloat("HorizontalMove", Mathf.Abs((playerTransform.position - transform.position).x) * speed * Time.deltaTime);
         transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, speed * Time.deltaTime);
+        
     }
 
     private bool isPlayerInsidePatrolingArea()
