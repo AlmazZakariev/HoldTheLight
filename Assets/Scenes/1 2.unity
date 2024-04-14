@@ -8172,6 +8172,11 @@ Transform:
   - {fileID: 268721551}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &816165652 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 255436182752454069, guid: 8d45308c5959c194c8a6e7facc143be4, type: 3}
+  m_PrefabInstance: {fileID: 1652110049}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &820935423
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10006,6 +10011,10 @@ PrefabInstance:
       propertyPath: lightBlinkingPeriod
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 6304962238360056435, guid: 8d45308c5959c194c8a6e7facc143be4, type: 3}
+      propertyPath: BGMusic1
+      value: 
+      objectReference: {fileID: 816165652}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

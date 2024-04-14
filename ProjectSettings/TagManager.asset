@@ -8,6 +8,7 @@ TagManager:
   - PickUp
   - Battery
   - Enemy
+  - Music
   layers:
   - Default
   - TransparentFX
