@@ -17,12 +17,13 @@ public class BattaryController : MonoBehaviour
     {
         
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    
+    private void OnTriggerEnter2D(Collider2D collider)
     {
         // Для проверки попадания на платформу
     
         // Для проверки подбора батарейки
-        if (collision.gameObject.CompareTag("Player"))
+        if (collider.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
             gameManager.AddLight(amountOfLight);

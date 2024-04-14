@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5568409881425006340
 Transform:
   m_ObjectHideFlags: 0
@@ -336,7 +336,7 @@ MonoBehaviour:
   maxSpeed: 6
   forcingDownMaxSpeed: 8
   movingSpeed: 10
-  xRange: 2.5
+  xRange: 2.68
   jumpForce: 5
   jumpCost: 3
   forceDownSpeed: 50
@@ -344,6 +344,7 @@ MonoBehaviour:
   attackLightTime: 0.15
   attackLight: {fileID: 5122052961908138766}
   animator: {fileID: 397114941331593481}
+  jumpSound: {fileID: 0}
 --- !u!61 &7652249754361571129
 BoxCollider2D:
   m_ObjectHideFlags: 0
