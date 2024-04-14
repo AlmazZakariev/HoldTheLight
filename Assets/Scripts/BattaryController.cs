@@ -6,6 +6,7 @@ public class BattaryController : MonoBehaviour
 {
     GameManager gameManager;
     public float amountOfLight;
+  
     // Start is called before the first frame update
     void Start()
     {
@@ -25,8 +26,10 @@ public class BattaryController : MonoBehaviour
         // Для проверки подбора батарейки
         if (collider.gameObject.CompareTag("Player"))
         {
+
             Destroy(gameObject);
             gameManager.AddLight(amountOfLight);
+            
         }
     }
 }
