@@ -147,6 +147,10 @@ MonoBehaviour:
   patrolingArea: {fileID: 0}
   speed: 2
   animator: {fileID: 1122989663941239056}
+  attackDelay: 2
+  attackDuration: 2
+  attackRange: 2
+  attackCancelRange: 2
 --- !u!95 &1122989663941239056
 Animator:
   serializedVersion: 5

@@ -12,6 +12,17 @@ public class MobAreaPatroler : MonoBehaviour
     PatrolingAreaPointOperations patrolingAreaPointOperations;
     float minDistanceToPoint = 1;
 
+    #region ATTACK PARAMS
+    public float attackDelay = 2f;
+    public float attackDuration = 2f;
+    public float attackRange = 2f;
+    public float attackCancelRange = 2f;
+
+    bool isAttacking;
+    float nextAttackTime = 0f;
+    float attackFinishTime = 0f;
+    #endregion
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,8 +34,62 @@ public class MobAreaPatroler : MonoBehaviour
     void Update()
     {
         animator.SetFloat("HorizontalMove", 0);
-        calculateStatus();
-        performAction();
+        if (isAttacking)
+        {
+            if (getDistanceToPlayer() >= attackCancelRange)
+            {
+                cancelAttack();
+            }
+            else if (Time.time >= attackFinishTime)
+            {
+                finishAttack();
+            }
+            return;
+        }
+
+        bool isFollowingPlayer = isPlayerInsidePatrolingArea();
+        if (isFollowingPlayer && getDistanceToPlayer() <= attackRange)
+        {
+            if (Time.time >= nextAttackTime)
+            {
+                startAttack();
+            }
+        }
+        else if (isFollowingPlayer)
+        {
+            doFollowPlayer();
+        }
+        else
+        {
+            doPatrol();
+        }
+    }
+
+    private void startAttack()
+    {
+        animator.SetTrigger("Attack");
+        isAttacking = true;
+        nextAttackTime = Time.time + attackDelay;
+        attackFinishTime = Time.time + attackDuration;
+        Debug.Log("Attack Started");
+    }
+
+    private void finishAttack()
+    {
+        isAttacking = false;
+        Debug.Log("Attack Finished");
+    }
+
+    private void cancelAttack()
+    {
+        isAttacking = false;
+        nextAttackTime = 0f;
+        Debug.Log("Attack Cancelled");
+    }
+
+    private float getDistanceToPlayer()
+    {
+        return (playerTransform.position - transform.position).magnitude;
     }
 
     private void calculateStatus()
@@ -92,6 +157,19 @@ public class MobAreaPatroler : MonoBehaviour
     private bool isPlayerInsidePatrolingArea()
     {
         return patrolingArea.GetComponent<PatrolingArea>().isPlayerInside;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        var t = Gizmos.color;
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, attackCancelRange);
+
+        Gizmos.color = t;
     }
 }
 
