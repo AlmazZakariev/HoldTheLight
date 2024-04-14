@@ -5866,8 +5866,8 @@ Transform:
   m_GameObject: {fileID: 268721550}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.1334, y: -15.63, z: 0.007920884}
-  m_LocalScale: {x: 5.9511642, y: 0.2238, z: 1}
+  m_LocalPosition: {x: 3.1334, y: -15.5775, z: 0.007920884}
+  m_LocalScale: {x: 5.9511642, y: 0.32882935, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 791379310}
@@ -7562,6 +7562,11 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!82 &273092792 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6293573385170099972, guid: 8d45308c5959c194c8a6e7facc143be4, type: 3}
+  m_PrefabInstance: {fileID: 1652110049}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &339593752 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7648342755243043924, guid: 86b46f774b0a01943aa733f828433d17, type: 3}
@@ -7774,8 +7779,8 @@ Transform:
   m_GameObject: {fileID: 685483535}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.1334, y: -2.169, z: 0.007920884}
-  m_LocalScale: {x: 5.9511642, y: 0.2238, z: 1}
+  m_LocalPosition: {x: 3.1334, y: -2.1696, z: 0.007920884}
+  m_LocalScale: {x: 5.9511642, y: 0.22265515, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 791379310}
@@ -7929,8 +7934,8 @@ Transform:
   m_GameObject: {fileID: 707732408}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.853, y: -0.2594, z: 0.007920884}
-  m_LocalScale: {x: 0.1994, y: 0.01492746, z: 1}
+  m_LocalPosition: {x: 0.853, y: -0.12042, z: 0.007920884}
+  m_LocalScale: {x: 0.1994, y: 0.34053248, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 791379310}
@@ -10384,8 +10389,8 @@ Transform:
   m_GameObject: {fileID: 2006283854}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.1334, y: -9.16, z: 0.007920884}
-  m_LocalScale: {x: 5.9511642, y: 0.2238, z: 1}
+  m_LocalPosition: {x: 3.1334, y: -9.1769, z: 0.007920884}
+  m_LocalScale: {x: 5.9511642, y: 0.19012615, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 791379310}
@@ -10519,6 +10524,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3049489820268898660, guid: e6de13ed97b49954ca2c759448125515, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4749912769379442051, guid: e6de13ed97b49954ca2c759448125515, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.32
@@ -10571,6 +10580,10 @@ PrefabInstance:
       propertyPath: m_PointLightOuterRadius
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 9088818857173652421, guid: e6de13ed97b49954ca2c759448125515, type: 3}
+      propertyPath: jumpSound
+      value: 
+      objectReference: {fileID: 273092792}
     - target: {fileID: 9088818857173652421, guid: e6de13ed97b49954ca2c759448125515, type: 3}
       propertyPath: attackLightTime
       value: 0.15

@@ -42,7 +42,9 @@ public class PlayerController : MonoBehaviour
     private GameManager gameManager;
     // для вызова атаки во время прыжка
     private PlayerAttack playerAttackScript;
-    
+
+    //для звуков
+    public AudioSource jumpSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -174,6 +176,8 @@ public class PlayerController : MonoBehaviour
     {
         if (gameManager.AddLight(-jumpCost))
         {
+            jumpSound.Play();
+
             jumpStats.TurnOn();
             playerRb.AddForce(Vector3.up * speed, ForceMode2D.Impulse);
             
