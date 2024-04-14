@@ -18,6 +18,6 @@ EditorBuildSettings:
     path: Assets/Scenes/AlmScenes/lightTest.unity
     guid: dcdbfaabb0193c14aad3b57bbca05bae
   - enabled: 0
-    path: Assets/Scenes/1 2_NoEdu.unity
+    path: Assets/Scenes/1 2_NOEdu.unity
     guid: 29767c773931046489344f34e7c234ee
   m_configObjects: {}
