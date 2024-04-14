@@ -45,6 +45,8 @@ public class PlayerController : MonoBehaviour
 
     //для звуков
     public AudioSource jumpSound;
+    public AudioSource pickUpSound;
+
     // Start is called before the first frame update
 
 
@@ -245,7 +247,18 @@ public class PlayerController : MonoBehaviour
 
         
     }
-   
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        // Для проверки попадания на платформу
+
+        // Для проверки подбора батарейки
+        if (collider.gameObject.CompareTag("Battery"))
+        {
+            pickUpSound.Play();
+            
+
+        }
+    }
 }
 // Класс для определения направления полёта плеера
 // Надо тестить больше, но вроде Direction2 работает норм
