@@ -238,6 +238,7 @@ public class PlayerController : MonoBehaviour
 
         
     }
+   
 }
 // Класс для определения направления полёта плеера
 // Надо тестить больше, но вроде Direction2 работает норм
