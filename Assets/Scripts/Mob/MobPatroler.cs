@@ -25,6 +25,18 @@ public class MobPatroler : MonoBehaviour
     {
         calculateStatus();
         performAction();
+        FlipIfNeeded();
+    }
+
+    private void FlipIfNeeded()
+    {
+        if (transform.localScale.x > 0 && movinRight ||
+            transform.localScale.x < 0 && !movinRight)
+        {
+            var t = transform.localScale;
+            t.x *= -1;
+            transform.localScale = t;
+        }
     }
 
     private void calculateStatus()
@@ -95,6 +107,7 @@ public class MobPatroler : MonoBehaviour
     private void doFollowPlayer()
     {
         transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, speed * Time.deltaTime);
+        movinRight = playerTransform.position.x - transform.position.x > 0;
     }
 
     private void doGoBack()
