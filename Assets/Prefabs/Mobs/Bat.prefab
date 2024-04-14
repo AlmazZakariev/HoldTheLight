@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 860641982062631924}
   - component: {fileID: 7407840705899369797}
   - component: {fileID: -4486762068669994227}
+  - component: {fileID: -8836975029514137934}
   m_Layer: 3
   m_Name: Bat
   m_TagString: Enemy
@@ -146,3 +147,24 @@ MonoBehaviour:
   speed: 3.5
   patrolingDistance: 6
   angerDistance: 5
+--- !u!95 &-8836975029514137934
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4468171248102393639}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8866cdd1ef8f13a4896bb050ebe30f09, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
