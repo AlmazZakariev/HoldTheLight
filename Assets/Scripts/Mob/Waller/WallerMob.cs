@@ -14,6 +14,7 @@ public class MobController : MonoBehaviour
     [SerializeField] private float minPatrolDelay = 0f;
     [SerializeField] private float maxPatrolDelay = 3f;
     [SerializeField] private float patrolEpsilon = 1f;
+    [SerializeField] private Animator animator;
 
     private Transform playerTransform; // —сылка на трансформацию игрока
     private float spawnPositionY;
@@ -36,6 +37,11 @@ public class MobController : MonoBehaviour
 
     private void Update()
     {
+        animator.SetBool("Running", false);
+        var oldRot = transform.localRotation.z;
+        var t = transform.localRotation;
+        t.z = 0;
+        transform.localRotation = t; 
         if (canAttackPlayer())
         {
             Attack();
@@ -44,6 +50,8 @@ public class MobController : MonoBehaviour
         {
             Patrol();
         }
+        t.z = oldRot;
+        transform.localRotation = t;
     }
 
     #endregion
@@ -55,8 +63,7 @@ public class MobController : MonoBehaviour
         // если игрок в зоне патрулировани€ - моб преследует его
         if (Mathf.Abs(playerTransform.position.y - spawnPositionY) < patrolRange)
         {
-            var dir = new Vector2(0, playerTransform.position.y - transform.position.y).normalized;
-            transform.Translate(dir * patrolSpeed * Time.deltaTime);
+            moveToY(playerTransform.position.y);
         }
         else if (Time.time >= nextPatrolTime)
         {
@@ -68,9 +75,30 @@ public class MobController : MonoBehaviour
             }
             else
             {
-                var dir = new Vector2(0, lastPatrolPointY - transform.position.y).normalized;
-                transform.Translate(dir * patrolSpeed * Time.deltaTime);
+                moveToY(lastPatrolPointY);
             }
+        }
+    }
+
+    private void moveToY(float yDestination)
+    {
+        var dir = new Vector2(0, yDestination - transform.position.y).normalized;
+
+        //anim
+        animator.SetBool("Running", true);
+        flipToY(dir.y);
+
+        transform.Translate(dir * patrolSpeed * Time.deltaTime);
+    }
+
+    private void flipToY(float dirY)
+    {
+        // if signs equals, flip
+        if (dirY * transform.localScale.x > 0)
+        {
+            var t = transform.localScale;
+            t.x *= -1;
+            transform.localScale = t;
         }
     }
 
@@ -81,8 +109,10 @@ public class MobController : MonoBehaviour
 
     private void Attack()
     {
+        flipToY(playerTransform.position.y - transform.position.y);
         if (Time.time >= nextFireTime)
         {
+            animator.SetTrigger("Attack");
             GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             projectile.GetComponent<Projectile>().SetDirection(playerTransform.position - transform.position);
 

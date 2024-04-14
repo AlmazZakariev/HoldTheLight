@@ -143,5 +143,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bb8bc89be8761e43a420a0015f0c350, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 3
   direction: {x: 0, y: 0, z: 0}
