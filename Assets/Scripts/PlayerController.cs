@@ -42,8 +42,9 @@ public class PlayerController : MonoBehaviour
     private GameManager gameManager;
     // для вызова атаки во время прыжка
     private PlayerAttack playerAttackScript;
-    // для всплывающих окон
-    private MessageManager messageManager;
+
+    //для звуков
+    public AudioSource jumpSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,21 +54,14 @@ public class PlayerController : MonoBehaviour
         jumpStats = new JumpStats(playerRb);
 
         playerAttackScript = GameObject.Find("Player").GetComponent<PlayerAttack>();
-        messageManager = GameObject.Find("Message").GetComponent<MessageManager>();
+        //messageManager = GameObject.Find("Message").GetComponent<MessageManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // выключение всплывающего окошка
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (messageManager.messageActive)
-            {
-                MessageManager.disableMessageEvent?.Invoke();
-            }
-        }
-        if (gameOver||messageManager.messageActive)
+        
+        if (gameOver)
         {
             return;
         }
@@ -111,7 +105,7 @@ public class PlayerController : MonoBehaviour
             Invoke("StopForcingDown", forcingTime);
         }
 
-        animator.SetBool("OnGround", currentSpeed == 0);
+        animator.SetBool("OnGround", Mathf.Abs(currentSpeed)<0.01);
         animator.SetFloat("HorizontalMove", Mathf.Abs(horizontalInput));
         if(horizontalInput> 0&& facingLeft)
         {
@@ -120,6 +114,12 @@ public class PlayerController : MonoBehaviour
         if (horizontalInput < 0 && !facingLeft)
         {
             Flip();
+        }
+        // выключение всплывающего окошка
+        if (Input.GetKeyDown(KeyCode.F) && Time.timeScale != 1)
+        {
+            MessageManager.disableMessageEvent?.Invoke();
+
         }
     }
     private void Flip()
@@ -176,6 +176,8 @@ public class PlayerController : MonoBehaviour
     {
         if (gameManager.AddLight(-jumpCost))
         {
+            jumpSound.Play();
+
             jumpStats.TurnOn();
             playerRb.AddForce(Vector3.up * speed, ForceMode2D.Impulse);
             

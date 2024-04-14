@@ -12,7 +12,7 @@ public class MessageManager : MonoBehaviour
     public TMP_Text messageText;
 
     public Animator animator;
-    public bool messageActive = false;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -30,16 +30,14 @@ public class MessageManager : MonoBehaviour
         disableMessageEvent -= DisableMessage;
     }
     private void DisplayMessage(string message)
-    {
-        messageActive= true;
+    {       
         messageText.text = message; 
         animator.SetInteger("State", 1);
-        
-
+        Time.timeScale = 0;
     }
     private void DisableMessage()
     {
         animator.SetInteger("State", 0);
-        messageActive = false;
+        Time.timeScale = 1;
     }
 }

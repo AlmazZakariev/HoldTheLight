@@ -132,9 +132,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -6579576272835520885, guid: 1e9815a46896cf942b46d6f7bcb23078, type: 3}
+      propertyPath: attackDelay
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -6579576272835520885, guid: 1e9815a46896cf942b46d6f7bcb23078, type: 3}
+      propertyPath: attackRange
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6579576272835520885, guid: 1e9815a46896cf942b46d6f7bcb23078, type: 3}
       propertyPath: patrolingArea
       value: 
       objectReference: {fileID: 571407567}
+    - target: {fileID: -6579576272835520885, guid: 1e9815a46896cf942b46d6f7bcb23078, type: 3}
+      propertyPath: attackDuration
+      value: 0.52
+      objectReference: {fileID: 0}
     - target: {fileID: 4468171248102393639, guid: 1e9815a46896cf942b46d6f7bcb23078, type: 3}
       propertyPath: m_Name
       value: Bat2

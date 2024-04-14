@@ -133,11 +133,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4341344659922109139, guid: a4ec07059ec609847b59caa724b7421e, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4341344659922109139, guid: a4ec07059ec609847b59caa724b7421e, type: 3}
       propertyPath: m_SortingLayerID
-      value: 982194621
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5927056064078276685, guid: a4ec07059ec609847b59caa724b7421e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13135,7 +13135,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4749912769379442051, guid: e6de13ed97b49954ca2c759448125515, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.73
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 4749912769379442051, guid: e6de13ed97b49954ca2c759448125515, type: 3}
       propertyPath: m_LocalPosition.y
@@ -13179,11 +13179,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8601431964933909578, guid: e6de13ed97b49954ca2c759448125515, type: 3}
       propertyPath: m_PointLightInnerRadius
-      value: 100
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8601431964933909578, guid: e6de13ed97b49954ca2c759448125515, type: 3}
       propertyPath: m_PointLightOuterRadius
-      value: 100
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9088818857173652421, guid: e6de13ed97b49954ca2c759448125515, type: 3}
       propertyPath: xRange
@@ -13208,7 +13208,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7045079261994322828, guid: 62f09335267e77f44b374f1544ead75c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 7045079261994322828, guid: 62f09335267e77f44b374f1544ead75c, type: 3}
       propertyPath: m_LocalPosition.y
