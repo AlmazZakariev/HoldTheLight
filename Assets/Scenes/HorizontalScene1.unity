@@ -14932,6 +14932,14 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 1.711612
       objectReference: {fileID: 0}
+    - target: {fileID: 529224436140996712, guid: ee20b7e5e8eef9747ac785b37bd842a2, type: 3}
+      propertyPath: panel
+      value: 
+      objectReference: {fileID: 1853971522}
+    - target: {fileID: 529224436140996712, guid: ee20b7e5e8eef9747ac785b37bd842a2, type: 3}
+      propertyPath: sceneNum
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8442024438749073293, guid: ee20b7e5e8eef9747ac785b37bd842a2, type: 3}
       propertyPath: m_Name
       value: NextLevelTrigger
@@ -18688,6 +18696,11 @@ PrefabInstance:
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 6293573385170099972, guid: 8d45308c5959c194c8a6e7facc143be4, type: 3}
   m_PrefabInstance: {fileID: 1796412576}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1853971522 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2199029708441222129, guid: fa5533684477b7544bbdf45cb83683cf, type: 3}
+  m_PrefabInstance: {fileID: 1068375555}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1962422481
 GameObject:

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class LvlTransition : MonoBehaviour
 {
     public int sceneNum;
+    public GameObject panel;
     public void ChangeScene(int scene)
     {
         SceneManager.LoadScene(scene);
@@ -14,7 +15,13 @@ public class LvlTransition : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            ChangeScene(sceneNum);
+            if (!panel.activeSelf)
+            {
+                panel.SetActive(true);
+                //ChangeScene(sceneNum);
+            }
+
+
         }
     }
 }
