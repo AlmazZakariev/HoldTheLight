@@ -7412,17 +7412,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &339593752 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7648342755243043924, guid: 86b46f774b0a01943aa733f828433d17, type: 3}
-  m_PrefabInstance: {fileID: 1530307652}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &351874946 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 3277663962044256365, guid: 86b46f774b0a01943aa733f828433d17, type: 3}
@@ -7892,6 +7881,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 848499414}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &914175586 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7648342755243043924, guid: 86b46f774b0a01943aa733f828433d17, type: 3}
+  m_PrefabInstance: {fileID: 1530307652}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1021715968
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9492,7 +9492,7 @@ PrefabInstance:
     - target: {fileID: 3348718217900183885, guid: 8d45308c5959c194c8a6e7facc143be4, type: 3}
       propertyPath: lightBar
       value: 
-      objectReference: {fileID: 339593752}
+      objectReference: {fileID: 914175586}
     - target: {fileID: 3348718217900183885, guid: 8d45308c5959c194c8a6e7facc143be4, type: 3}
       propertyPath: maxLight
       value: 600000

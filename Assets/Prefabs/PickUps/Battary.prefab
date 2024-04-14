@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4669303917813418907}
   - component: {fileID: -7533493075427895846}
   - component: {fileID: 7668931269989126496}
+  - component: {fileID: 3644387002436713256}
   m_Layer: 0
   m_Name: Battary
   m_TagString: Battery
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 648871299
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4721fd119d73eb343be2f004b9ce126f, type: 3}
+  m_Sprite: {fileID: 1949964107, guid: 9a1f2c80c4635804bb3fff7dddc36b6d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -123,7 +124,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16666667, y: 0.34946236}
+    oldSize: {x: 0.16666667, y: 0.26666668}
     newSize: {x: 2.48, y: 5.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -145,6 +146,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amountOfLight: 7
+--- !u!95 &3644387002436713256
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424408754895224400}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1a5a20e17cda3be41891114105b2fcea, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4146499348182925926
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +183,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6775625269070886824
 Transform:
   m_ObjectHideFlags: 0
@@ -211,8 +233,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0020000339, y: 0.0081499815, z: 0}
-    m_Extent: {x: 1.108, y: 1.10905, z: 0}
+    m_Center: {x: -0.00015002489, y: 0.0009999871, z: 0}
+    m_Extent: {x: 1.1077499, y: 1.1129999, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
