@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5568409881425006340
 Transform:
   m_ObjectHideFlags: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 0000000031bd9b8683fdac266b3f9a4ec9511723
+  m_ApplyToSortingLayers: 0000000031bd9b8683fdac266b3f9a4ec9511723bd198b3a
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -345,6 +345,7 @@ MonoBehaviour:
   attackLight: {fileID: 5122052961908138766}
   animator: {fileID: 397114941331593481}
   jumpSound: {fileID: 0}
+  pickUpSound: {fileID: 0}
 --- !u!61 &7652249754361571129
 BoxCollider2D:
   m_ObjectHideFlags: 0

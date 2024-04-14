@@ -79,8 +79,12 @@ public class MobAreaPatroler : MonoBehaviour
         isAttacking = false;
 
         // player reaction to attack
-        var playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        playerController.onAttacked();
+        if (GameObject.FindGameObjectWithTag("Player")!=null)
+        {
+            var playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+            playerController.onAttacked();
+        }
+        
     }
 
     private void cancelAttack()
