@@ -7952,12 +7952,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a7d58c5c87eb04448ffe71fe6921eb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: 'PRESS SPACE TO JUMP-ATTACK
-
-
-
-
-    PRESS F TO CONTINUE'
+  message: "PRESS SPACE TO JUMP-ATTACK\n\u041D\u0410\u0416\u041C\u0418\u0422\u0415
+    \u041F\u0420\u041E\u0411\u0415\u041B \u0427\u0422\u041E\u0411\u042B/\u0414\u041B\u042F
+    \u041F\u0420\u042B\u0416\u041A\u0410 \u0410\u0422\u0410\u041A\u0418\n\n\nPRESS
+    F TO CONTINUE"
 --- !u!61 &707732411
 BoxCollider2D:
   m_ObjectHideFlags: 0
