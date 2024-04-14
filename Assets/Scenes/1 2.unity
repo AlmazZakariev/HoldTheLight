@@ -7952,12 +7952,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a7d58c5c87eb04448ffe71fe6921eb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: 'PRESS SPACE TO JUMP-ATTACK
-
-
-
-
-    PRESS F TO CONTINUE'
+  message: "PRESS SPACE TO JUMP-ATTACK\n\u041D\u0410\u0416\u041C\u0418\u0422\u0415
+    \u041F\u0420\u041E\u0411\u0415\u041B \u0427\u0422\u041E\u0411\u042B/\u0414\u041B\u042F
+    \u041F\u0420\u042B\u0416\u041A\u0410 \u0410\u0422\u0410\u041A\u0418\n\n\nPRESS
+    F TO CONTINUE"
 --- !u!61 &707732411
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8172,6 +8170,11 @@ Transform:
   - {fileID: 268721551}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &816165652 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 255436182752454069, guid: 8d45308c5959c194c8a6e7facc143be4, type: 3}
+  m_PrefabInstance: {fileID: 1652110049}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &820935423
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10006,6 +10009,10 @@ PrefabInstance:
       propertyPath: lightBlinkingPeriod
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 6304962238360056435, guid: 8d45308c5959c194c8a6e7facc143be4, type: 3}
+      propertyPath: BGMusic1
+      value: 
+      objectReference: {fileID: 816165652}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
