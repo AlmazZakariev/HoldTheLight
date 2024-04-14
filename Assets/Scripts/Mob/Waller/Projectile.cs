@@ -35,7 +35,7 @@ public class Projectile : MonoBehaviour
 
     public void SetDirection(Vector3 direction)
     {
-        this.direction = direction;
+        this.direction = direction.normalized;
     }
 
     private void OnPlayerHit()
