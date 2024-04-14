@@ -48,6 +48,13 @@ public class PlayerController : MonoBehaviour
     public AudioSource pickUpSound;
 
     // Start is called before the first frame update
+
+
+    public void onAttacked()
+    {
+        gameManager.GameOver();
+    }
+
     void Start()
     {
     

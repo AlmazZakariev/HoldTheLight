@@ -48,12 +48,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLight: 30
   currentLight: 0
-  amount0: 0.5
-  amount1: 0.5
-  amount2: 0.35
-  amount3: 0.1
-  lightBlinkingPeriod: 1
-  lightBlinkPower: 0.05
+  amount0: 1
+  amount1: 0.6
+  amount2: 0.25
+  amount3: 0.15
+  lightBlinkingPeriod: 0.3
+  lightBlinkPower: 0.1
   scalePerSecond: 2
   player: {fileID: 0}
   backgroundImg: {fileID: 6419705189509543860, guid: a4ec07059ec609847b59caa724b7421e, type: 3}

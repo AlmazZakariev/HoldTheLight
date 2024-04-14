@@ -36,6 +36,7 @@ public class MobAreaPatroler : MonoBehaviour
         animator.SetFloat("HorizontalMove", 0);
         if (isAttacking)
         {
+            turnFaceInPointDirection(playerTransform.position.x);
             if (getDistanceToPlayer() >= attackCancelRange)
             {
                 cancelAttack();
@@ -71,53 +72,30 @@ public class MobAreaPatroler : MonoBehaviour
         isAttacking = true;
         nextAttackTime = Time.time + attackDelay;
         attackFinishTime = Time.time + attackDuration;
-        Debug.Log("Attack Started");
     }
 
     private void finishAttack()
     {
         isAttacking = false;
-        Debug.Log("Attack Finished");
+
+        // player reaction to attack
+        if (GameObject.FindGameObjectWithTag("Player")!=null)
+        {
+            var playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+            playerController.onAttacked();
+        }
+        
     }
 
     private void cancelAttack()
     {
         isAttacking = false;
         nextAttackTime = 0f;
-        Debug.Log("Attack Cancelled");
     }
 
     private float getDistanceToPlayer()
     {
         return (playerTransform.position - transform.position).magnitude;
-    }
-
-    private void calculateStatus()
-    {
-        switch (status)
-        {
-            case Status.PATROLING:
-                if (isPlayerInsidePatrolingArea())
-                    status = Status.AGGRESSIVE;
-                break;
-            case Status.AGGRESSIVE:
-                if (!isPlayerInsidePatrolingArea())
-                    status = Status.PATROLING;
-                break;
-        }
-    }
-
-    private void performAction()
-    {
-        switch (status)
-        {
-            case Status.PATROLING:
-                doPatrol();
-                break;
-            case Status.AGGRESSIVE:
-                doFollowPlayer();
-                break;
-        }
     }
 
     private void doPatrol()
@@ -130,13 +108,18 @@ public class MobAreaPatroler : MonoBehaviour
             }
             else
             {
-                var localScaleModifier = (-transform.position.x + patrolingAreaPointOperations.getCurrentPoint().x) * transform.localScale.x < 0 ? -1 : 1;
-                transform.localScale = new Vector3(transform.localScale.x * localScaleModifier, transform.localScale.y, transform.localScale.z);
+                turnFaceInPointDirection(patrolingAreaPointOperations.getCurrentPoint().x);
                 animator.SetFloat("HorizontalMove", Mathf.Abs(transform.position.x - patrolingAreaPointOperations.getCurrentPoint().x) * speed * Time.deltaTime);
                 transform.position = Vector2.MoveTowards(transform.position,
                     patrolingAreaPointOperations.getCurrentPoint(), speed * Time.deltaTime);
             }
         }
+    }
+
+    private void turnFaceInPointDirection(float pointX)
+    {
+        var localScaleModifier = (-transform.position.x + pointX) * transform.localScale.x < 0 ? -1 : 1;
+        transform.localScale = new Vector3(transform.localScale.x * localScaleModifier, transform.localScale.y, transform.localScale.z);
     }
 
     private bool isPointReached()
@@ -147,8 +130,7 @@ public class MobAreaPatroler : MonoBehaviour
 
     private void doFollowPlayer()
     {
-        var localScaleModifier = (-transform.position.x + playerTransform.position.x) * transform.localScale.x < 0 ? -1 : 1;
-        transform.localScale = new Vector3(transform.localScale.x * localScaleModifier, transform.localScale.y, transform.localScale.z);
+        turnFaceInPointDirection(playerTransform.position.x);
         animator.SetFloat("HorizontalMove", Mathf.Abs((playerTransform.position - transform.position).x) * speed * Time.deltaTime);
         transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, speed * Time.deltaTime);
         
