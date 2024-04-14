@@ -8240,8 +8240,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0009499788, y: -0.002550006, z: 0}
-    m_Extent: {x: 1.37555, y: 1.37565, z: 0}
+    m_Center: {x: 0.0038000345, y: 0.0022999644, z: 0}
+    m_Extent: {x: 1.375, y: 1.3731, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 7.54
@@ -8532,11 +8532,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5395867702068523362, guid: 3ee4158440464a8419d287334869a88e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.35603023
       objectReference: {fileID: 0}
     - target: {fileID: 5395867702068523362, guid: 3ee4158440464a8419d287334869a88e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.4006366
       objectReference: {fileID: 0}
     - target: {fileID: 5395867702068523362, guid: 3ee4158440464a8419d287334869a88e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9240,6 +9240,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e9815a46896cf942b46d6f7bcb23078, type: 3}
+--- !u!82 &1457871377 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6365862536686853653, guid: 8d45308c5959c194c8a6e7facc143be4, type: 3}
+  m_PrefabInstance: {fileID: 1652110049}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1517030740
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10392,6 +10397,10 @@ PrefabInstance:
       propertyPath: BGMusic1
       value: 
       objectReference: {fileID: 816165652}
+    - target: {fileID: 6365862536686853653, guid: 8d45308c5959c194c8a6e7facc143be4, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10965,6 +10974,10 @@ PrefabInstance:
       propertyPath: jumpSound
       value: 
       objectReference: {fileID: 273092792}
+    - target: {fileID: 9088818857173652421, guid: e6de13ed97b49954ca2c759448125515, type: 3}
+      propertyPath: pickUpSound
+      value: 
+      objectReference: {fileID: 1457871377}
     - target: {fileID: 9088818857173652421, guid: e6de13ed97b49954ca2c759448125515, type: 3}
       propertyPath: attackLightTime
       value: 0.15
