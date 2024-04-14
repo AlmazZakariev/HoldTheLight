@@ -46,6 +46,13 @@ public class PlayerController : MonoBehaviour
     //для звуков
     public AudioSource jumpSound;
     // Start is called before the first frame update
+
+
+    public void onAttacked()
+    {
+        gameManager.GameOver();
+    }
+
     void Start()
     {
     
