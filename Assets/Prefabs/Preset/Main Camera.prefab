@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1059757639150956731}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.21, z: -10}
+  m_LocalPosition: {x: 0, y: -3.21, z: -6.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0}
   VerticalScene: 1
 --- !u!114 &1171195833911927144
 MonoBehaviour:
