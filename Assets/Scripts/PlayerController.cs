@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
 
     public float forceDownSpeed = 3f;
     public float forcingTime = 2;
+    public float forceDownCoolDown;
+    private bool forcingDownAvalable = true;
 
     public float attackLightTime;
     public GameObject attackLight;
@@ -113,10 +115,9 @@ public class PlayerController : MonoBehaviour
         //transform.Translate(Vector3.right * Time.deltaTime * horizontalInput * movingSpeed);
 
         //Активация ускорения вниз
-        if (!jumpStats.IsNeedFroceDown(false) && Input.GetKeyDown(KeyCode.S) && !jumpStats.IsForcingDown() && cameraFollowScript.VerticalScene)
+        if (!jumpStats.IsNeedFroceDown(false) && Input.GetKeyDown(KeyCode.S) && !jumpStats.IsForcingDown() && cameraFollowScript.VerticalScene&&forcingDownAvalable)
         {
-            jumpStats.ForcingDown = true;
-            Invoke("StopForcingDown", forcingTime);
+            MakeFroceDown();
         }
 
         animator.SetBool("OnGround", Mathf.Abs(currentSpeed)<0.01);
@@ -169,22 +170,30 @@ public class PlayerController : MonoBehaviour
         {
             MakeOneJump(jumpForce);
         }
+        // форс фниз
         if (jumpStats.IsForcingDown())
         {
             playerRb.AddForce(Vector2.down * forceDownSpeed, ForceMode2D.Force);
+            
         }
         
         // Запоминаем координату Y для определения направления
         lastYPos.SetNext(transform.position.y);
     }
+    private void MakeForceAble()
+    {
+        forcingDownAvalable = true;
+    }
     private void StopForcingDown()
     {
         jumpStats.ForcingDown = false;
     }
-    private void MakeFroceDown(float forceSpeed)
+    private void MakeFroceDown()
     {
-        playerRb.AddForce(Vector2.down * forceSpeed, ForceMode2D.Impulse);
-        //playerRb.AddForce(Vector3.down * forceSpeed, ForceMode2D.Force);
+        jumpStats.ForcingDown = true;
+        Invoke("StopForcingDown", forcingTime);
+        forcingDownAvalable = false;
+        Invoke("MakeForceAble", forceDownCoolDown);
     }
     private void MakeOneJump(float speed)
     {
@@ -376,5 +385,4 @@ class JumpStats
     {
         return ForcingDown;
     }
-  
 }
