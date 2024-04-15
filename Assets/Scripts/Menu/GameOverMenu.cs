@@ -9,8 +9,15 @@ public class GameOverMenu : MonoBehaviour
 
     public static void Restart()
     {
+        PlayerPrefs.SetString("lastCheckpoint", null);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    public static void StartFromCp()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     public void LoadMenu()
     {
         Time.timeScale = 1;
