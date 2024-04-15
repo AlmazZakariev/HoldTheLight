@@ -7,7 +7,7 @@ public class GameOverMenu : MonoBehaviour
 {
     public string currentLevelName;
 
-    public void Restart()
+    public static void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
