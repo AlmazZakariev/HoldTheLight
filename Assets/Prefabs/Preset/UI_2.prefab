@@ -1449,7 +1449,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4190610053310271125, guid: 5f59d9bc64d93db45a436339191fcd5e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4190610053310271125, guid: 5f59d9bc64d93db45a436339191fcd5e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1457,11 +1457,23 @@ PrefabInstance:
       objectReference: {fileID: 1997612853532316203}
     - target: {fileID: 4190610053310271125, guid: 5f59d9bc64d93db45a436339191fcd5e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadMenu
+      value: StartFromCp
       objectReference: {fileID: 0}
     - target: {fileID: 4190610053310271125, guid: 5f59d9bc64d93db45a436339191fcd5e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: GameOverMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190610053310271125, guid: 5f59d9bc64d93db45a436339191fcd5e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190610053310271125, guid: 5f59d9bc64d93db45a436339191fcd5e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190610053310271125, guid: 5f59d9bc64d93db45a436339191fcd5e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6256388780330906369, guid: 5f59d9bc64d93db45a436339191fcd5e, type: 3}
       propertyPath: m_text

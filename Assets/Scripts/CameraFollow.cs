@@ -32,6 +32,8 @@ public class CameraFollow : MonoBehaviour
     }
     void SetOffset()
     {      
+
         offset = player.transform.position- transform.position;
+       offset.y = 2.94f;
     }
 }
