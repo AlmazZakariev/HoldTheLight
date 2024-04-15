@@ -50,6 +50,10 @@ public class PlayerController : MonoBehaviour
     {
         gameManager.GameOver();
     }
+    private void Awake()
+    {
+        Time.timeScale = 1.0f;
+    }
     // Start is called before the first frame update
     void Start()
     {
