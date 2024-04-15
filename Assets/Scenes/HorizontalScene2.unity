@@ -2365,7 +2365,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6287636900531872413, guid: 0039fa5f68378cb48be13613ac451ba2, type: 3}
       propertyPath: message
-      value: "\u0423 \u041C\u0415\u041D\u042F \u0415\u0421\u0422\u042C \u0424\u041E\u041D\u0410\u0420\u042C.
+      value: "\u0423 \u041C\u0415\u041D\u042F \u0415\u0421\u0422\u042C \u0412\u0418\u0417\u041E\u0420.
         \u042F \u0421\u041C\u041E\u0413\u0423 \u0415\u041C\u0423 \u041F\u041E\u041C\u041E\u0427\u042C"
       objectReference: {fileID: 0}
     - target: {fileID: 8031946931557253709, guid: 0039fa5f68378cb48be13613ac451ba2, type: 3}
