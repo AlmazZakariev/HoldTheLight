@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
     private float innerRadius;
     private float outerRadius;
     private float intensity;
+
+    private CameraFollow cameraFollowScript;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +55,7 @@ public class GameManager : MonoBehaviour
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         mainLightScript = GameObject.Find("MainLight").GetComponent<Light2D>();
         LightPreset();
+        cameraFollowScript = GameObject.Find("Main Camera").GetComponent<CameraFollow>();
     }
 
     // Update is called once per frame
@@ -70,7 +73,7 @@ public class GameManager : MonoBehaviour
         }
 
         //background control
-        if (player.transform.position.y - nextYPosition < newBGDist)
+        if (player.transform.position.y - nextYPosition < newBGDist&&cameraFollowScript.VerticalScene)
         {
             var pos = backgroundImg.transform.position;
             pos.y = nextYPosition;

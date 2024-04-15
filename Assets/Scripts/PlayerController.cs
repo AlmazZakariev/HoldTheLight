@@ -1,10 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 //TODO: баг. Если прыгнуть в самом начале, прыжок не кончается
 public class PlayerController : MonoBehaviour
 {
@@ -108,7 +102,11 @@ public class PlayerController : MonoBehaviour
         }
         // Перемещение в стороны
         horizontalInput = Input.GetAxis("Horizontal");
-        transform.Translate(Vector3.right * Time.deltaTime * horizontalInput * movingSpeed);
+        var playerVelocity = playerRb.velocity;
+        playerVelocity.x = horizontalInput * movingSpeed;
+        playerRb.velocity = playerVelocity;
+        //playerRb.AddForce(Vector2.right * horizontalInput* movingSpeed, ForceMode2D.Force);
+        //transform.Translate(Vector3.right * Time.deltaTime * horizontalInput * movingSpeed);
 
         //Активация ускорения вниз
         if (!jumpStats.IsNeedFroceDown(false) && Input.GetKeyDown(KeyCode.S) && !jumpStats.IsForcingDown() && cameraFollowScript.VerticalScene)

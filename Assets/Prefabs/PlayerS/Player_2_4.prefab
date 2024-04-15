@@ -309,7 +309,7 @@ Rigidbody2D:
   m_LinearDrag: 2
   m_AngularDrag: 2
   m_GravityScale: 2.5
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 19b40539a7a790649b50c245196e37c3, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -335,8 +335,8 @@ MonoBehaviour:
   currentSpeed: 0
   maxSpeed: 6
   forcingDownMaxSpeed: 8
-  movingSpeed: 10
-  xRange: 2.68
+  movingSpeed: 7
+  xRange: 2.7
   jumpForce: 5
   jumpCost: 3
   forceDownSpeed: 50
