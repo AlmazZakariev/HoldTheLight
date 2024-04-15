@@ -21,7 +21,7 @@ public class SafeZoneScript : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player")) {
-            PlayerPrefs.SetString("lastCheckpoint", gameObject.name);
+            GameOverMenu.lastCheckpointName = gameObject.name;
         }
     }
 }

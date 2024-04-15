@@ -27,6 +27,7 @@ public class SpawnOnCheckpoint : MonoBehaviour
     private void Awake()
     {
         string checkpointName = PlayerPrefs.GetString("lastCheckpoint");
+        PlayerPrefs.SetString("lastCheckpoint", null);
         Debug.Log(checkpointName);
         if (checkpointName != null && checkpointName.Length > 0)
         {

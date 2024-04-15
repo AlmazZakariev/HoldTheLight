@@ -5,16 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class GameOverMenu : MonoBehaviour
 {
-    public string currentLevelName;
+    public static string lastCheckpointName = null;
 
     public static void Restart()
     {
-        PlayerPrefs.SetString("lastCheckpoint", null);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public static void StartFromCp()
     {
+        PlayerPrefs.SetString("lastCheckpoint", lastCheckpointName);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
