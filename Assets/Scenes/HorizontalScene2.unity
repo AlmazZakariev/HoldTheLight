@@ -1505,6 +1505,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 529224436140996712, guid: ee20b7e5e8eef9747ac785b37bd842a2, type: 3}
+      propertyPath: panel
+      value: 
+      objectReference: {fileID: 1823104794}
     - target: {fileID: 8442024438749073293, guid: ee20b7e5e8eef9747ac785b37bd842a2, type: 3}
       propertyPath: m_Name
       value: NextLevelTrigger
@@ -1519,11 +1523,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8879873116174891105, guid: ee20b7e5e8eef9747ac785b37bd842a2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.442
+      value: 12.832
       objectReference: {fileID: 0}
     - target: {fileID: 8879873116174891105, guid: ee20b7e5e8eef9747ac785b37bd842a2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.62
+      value: 1.52
       objectReference: {fileID: 0}
     - target: {fileID: 8879873116174891105, guid: ee20b7e5e8eef9747ac785b37bd842a2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1763,6 +1767,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 460074093}
     m_Modifications:
     - target: {fileID: 6287636900531872413, guid: 0039fa5f68378cb48be13613ac451ba2, type: 3}
+      propertyPath: small
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6287636900531872413, guid: 0039fa5f68378cb48be13613ac451ba2, type: 3}
       propertyPath: message
       value: "\u042D\u0422\u0410 \u0420\u0410\u0426\u0418\u042F \u0421\u041B\u041E\u041C\u0410\u041D\u0410.
         \u0421\u0415\u0419\u0427\u0410\u0421 \u041E\u041D\u0410 \u041C\u041D\u0415
@@ -1851,7 +1859,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1059757639150956731, guid: 62f09335267e77f44b374f1544ead75c, type: 3}
       propertyPath: m_Name
-      value: Main Camera (1)
+      value: Main Camera
       objectReference: {fileID: 0}
     - target: {fileID: 7045079261994322828, guid: 62f09335267e77f44b374f1544ead75c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1960,6 +1968,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 460074093}
     m_Modifications:
+    - target: {fileID: 6287636900531872413, guid: 0039fa5f68378cb48be13613ac451ba2, type: 3}
+      propertyPath: small
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6287636900531872413, guid: 0039fa5f68378cb48be13613ac451ba2, type: 3}
       propertyPath: message
       value: "\u0411\u041E\u0416\u0415! \u041E\u041D \u0421\u0415\u0419\u0427\u0410\u0421
@@ -2172,6 +2184,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 460074093}
     m_Modifications:
     - target: {fileID: 6287636900531872413, guid: 0039fa5f68378cb48be13613ac451ba2, type: 3}
+      propertyPath: small
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6287636900531872413, guid: 0039fa5f68378cb48be13613ac451ba2, type: 3}
       propertyPath: message
       value: "\u0423 \u041C\u0415\u041D\u042F \u0415\u0421\u0422\u042C \u0424\u041E\u041D\u0410\u0420\u042C.
         \u042F \u0421\u041C\u041E\u0413\u0423 \u0415\u041C\u0423 \u041F\u041E\u041C\u041E\u0427\u042C"
@@ -2237,6 +2253,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8031946931557253709, guid: 0039fa5f68378cb48be13613ac451ba2, type: 3}
   m_PrefabInstance: {fileID: 1612778016}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1823104794 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2199029708441222129, guid: fa5533684477b7544bbdf45cb83683cf, type: 3}
+  m_PrefabInstance: {fileID: 606363372}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2104566367
 GameObject:

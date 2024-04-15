@@ -14,13 +14,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/1 2.unity
     guid: 3869f9a7897401a46ad9833be6fee0f5
+  - enabled: 1
+    path: Assets/Scenes/HorizontalScene2.unity
+    guid: cefdbb5eacb4cb04bb7ea5d8a0b7a73c
   - enabled: 0
     path: Assets/Scenes/AlmScenes/lightTest.unity
     guid: dcdbfaabb0193c14aad3b57bbca05bae
   - enabled: 0
     path: Assets/Scenes/1 2_NoEdu.unity
     guid: 29767c773931046489344f34e7c234ee
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/2.unity
     guid: 52d1b45eff82d75488b7df1a74cbb06b
   m_configObjects: {}

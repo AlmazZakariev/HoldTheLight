@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9597c0468553aec449233baf1ebcd2fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lvlNum: 0
   maxLight: 30
   currentLight: 0
   amount0: 1
@@ -57,8 +58,8 @@ MonoBehaviour:
   scalePerSecond: 2
   player: {fileID: 0}
   backgroundImg: {fileID: 6419705189509543860, guid: a4ec07059ec609847b59caa724b7421e, type: 3}
-  nextYPosition: 17
-  bgSize: 17
+  nextYPosition: 22.2
+  bgSize: 22.2
   newBGDist: 20
   lightBar: {fileID: 0}
   textGameOver: {fileID: 0}

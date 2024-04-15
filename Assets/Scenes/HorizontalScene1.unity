@@ -16003,6 +16003,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1962422482}
     m_Modifications:
     - target: {fileID: 6287636900531872413, guid: 0039fa5f68378cb48be13613ac451ba2, type: 3}
+      propertyPath: small
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6287636900531872413, guid: 0039fa5f68378cb48be13613ac451ba2, type: 3}
       propertyPath: message
       value: "\u042F \u0412\u0418\u0416\u0423 \u041F\u0415\u0429\u0415\u0420\u0423. 
         \u0422\u0410\u041C \u041C\u041E\u0416\u041D\u041E \u0423\u041A\u0420\u042B\u0422\u042C\u0421\u042F
@@ -16249,6 +16253,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1962422482}
     m_Modifications:
     - target: {fileID: 6287636900531872413, guid: 0039fa5f68378cb48be13613ac451ba2, type: 3}
+      propertyPath: small
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6287636900531872413, guid: 0039fa5f68378cb48be13613ac451ba2, type: 3}
       propertyPath: message
       value: "\u0418\u0421\u0421\u041B\u0415\u0414\u041E\u0412\u0410\u041D\u0418\u0415
         \u041F\u041E\u041C\u041E\u0416\u0415\u0422 \u0421\u041A\u041E\u0420\u041E\u0422\u0410\u0422\u042C
@@ -16328,6 +16336,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1962422482}
     m_Modifications:
+    - target: {fileID: 6287636900531872413, guid: 0039fa5f68378cb48be13613ac451ba2, type: 3}
+      propertyPath: small
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6287636900531872413, guid: 0039fa5f68378cb48be13613ac451ba2, type: 3}
       propertyPath: message
       value: "\u0421\u041D\u0418\u0417\u0423 \u0414\u041E\u041D\u041E\u0421\u042F\u0422\u0421\u042F
@@ -17896,13 +17908,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 671216855310382676, guid: fa5533684477b7544bbdf45cb83683cf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 671216855310382676, guid: fa5533684477b7544bbdf45cb83683cf, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 671216855310382676, guid: fa5533684477b7544bbdf45cb83683cf, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 431.55603
+      objectReference: {fileID: 0}
+    - target: {fileID: 671216855310382676, guid: fa5533684477b7544bbdf45cb83683cf, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 620
+      objectReference: {fileID: 0}
     - target: {fileID: 1997612853532316203, guid: fa5533684477b7544bbdf45cb83683cf, type: 3}
       propertyPath: currentLevelName
       value: HorizontalScene1
       objectReference: {fileID: 0}
+    - target: {fileID: 7058679872918243371, guid: fa5533684477b7544bbdf45cb83683cf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8188654349021001800, guid: fa5533684477b7544bbdf45cb83683cf, type: 3}
       propertyPath: m_Name
       value: UI_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620864855560164291, guid: fa5533684477b7544bbdf45cb83683cf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8738421151231751675, guid: fa5533684477b7544bbdf45cb83683cf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18123,6 +18159,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1962422482}
     m_Modifications:
     - target: {fileID: 6287636900531872413, guid: 0039fa5f68378cb48be13613ac451ba2, type: 3}
+      propertyPath: small
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6287636900531872413, guid: 0039fa5f68378cb48be13613ac451ba2, type: 3}
       propertyPath: message
       value: "\u0417\u0414\u0415\u0421\u042C \u0415\u0421\u0422\u042C \u041A\u0422\u041E-\u0422\u041E
         \u0415\u0429\u0415"
@@ -18196,6 +18236,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1962422482}
     m_Modifications:
+    - target: {fileID: 6287636900531872413, guid: 0039fa5f68378cb48be13613ac451ba2, type: 3}
+      propertyPath: small
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6287636900531872413, guid: 0039fa5f68378cb48be13613ac451ba2, type: 3}
       propertyPath: message
       value: "\u041F\u0415\u0421\u0427\u0410\u041D\u0410\u042F \u0411\u0423\u0420\u042F

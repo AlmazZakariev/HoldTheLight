@@ -6415,6 +6415,7 @@ MonoBehaviour:
 
 
     PRESS F TO CONTINUE'
+  small: 0
 --- !u!61 &268721553
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8240,8 +8241,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0024999976, y: -0.002649963, z: 0}
-    m_Extent: {x: 1.3764, y: 1.37275, z: 0}
+    m_Center: {x: -0.0038999915, y: 0.00045001507, z: 0}
+    m_Extent: {x: 1.3687, y: 1.37705, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 7.54
@@ -8394,6 +8395,7 @@ MonoBehaviour:
 
 
     PRESS F TO CONTINUE'
+  small: 0
 --- !u!61 &685483538
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10354,6 +10356,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3348718217900183885, guid: 8d45308c5959c194c8a6e7facc143be4, type: 3}
+      propertyPath: bgSize
+      value: 22.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3348718217900183885, guid: 8d45308c5959c194c8a6e7facc143be4, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 41247861}
@@ -10393,6 +10399,10 @@ PrefabInstance:
       propertyPath: backgroundImg
       value: 
       objectReference: {fileID: 6419705189509543860, guid: a4ec07059ec609847b59caa724b7421e, type: 3}
+    - target: {fileID: 3348718217900183885, guid: 8d45308c5959c194c8a6e7facc143be4, type: 3}
+      propertyPath: nextYPosition
+      value: 22.2
+      objectReference: {fileID: 0}
     - target: {fileID: 3348718217900183885, guid: 8d45308c5959c194c8a6e7facc143be4, type: 3}
       propertyPath: lightBlinkPower
       value: 0.1
@@ -10812,6 +10822,7 @@ MonoBehaviour:
 
     PRESS
     F TO CONTINUE'
+  small: 0
 --- !u!61 &2006283857
 BoxCollider2D:
   m_ObjectHideFlags: 0
