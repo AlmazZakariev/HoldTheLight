@@ -12,10 +12,12 @@ public class PlayerAttack : MonoBehaviour
     public float attackRangeX;
     public float attackRangeY;
     public bool attackLightActive;
+    //private GameManager gameManager;
+    public AudioSource batDeadSound;
     // Start is called before the first frame update
     void Start()
     {
-        
+        //gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -38,7 +40,9 @@ public class PlayerAttack : MonoBehaviour
             var target = enemies[i].GameObject();
             if (target.CompareTag("Enemy"))
             {
+                batDeadSound.Play();
                 Destroy(target);
+                
             }
             ;
         }

@@ -61,15 +61,14 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameOver)
+        if (cameraFollowScript.VerticalScene)
         {
-            return;
-        }
-        currentLight -= scalePerSecond*Time.deltaTime;
-        lightBar.fillAmount = currentLight / maxLight;
-        if (currentLight <= 0)
-        {
-            GameOver();
+            currentLight -= scalePerSecond * Time.deltaTime;
+            lightBar.fillAmount = currentLight / maxLight;
+            if (currentLight <= 0)
+            {
+                GameOver();
+            }
         }
 
         //background control
@@ -85,10 +84,7 @@ public class GameManager : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (gameOver)
-        {
-            return;
-        }
+
         if (lightBlink&& lightBlinkDoing)
         {
             mainLightScript.intensity -= lightBlinkPower;
@@ -112,6 +108,7 @@ public class GameManager : MonoBehaviour
     }
     private void ControlLigth()
     {
+
         //при lightPersent>= имеем радиусы 100%
         var lightPersent = currentLight / maxLight;
         if (lightPersent < amount1 && lightPersent > amount2)
@@ -156,6 +153,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         gameOver = true;
+        Time.timeScale = 0;
         playerController.GameOver();
         gameOverMenu.SetActive(true);
     }

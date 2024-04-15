@@ -8241,8 +8241,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0017499924, y: 0.0031499863, z: 0}
-    m_Extent: {x: 1.37155, y: 1.37325, z: 0}
+    m_Center: {x: -0.00080001354, y: 0.0042500496, z: 0}
+    m_Extent: {x: 1.375, y: 1.37175, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 7.54
@@ -8656,7 +8656,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4341344659922109139, guid: a4ec07059ec609847b59caa724b7421e, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4341344659922109139, guid: a4ec07059ec609847b59caa724b7421e, type: 3}
       propertyPath: m_SortingOrder
@@ -8664,7 +8664,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4341344659922109139, guid: a4ec07059ec609847b59caa724b7421e, type: 3}
       propertyPath: m_SortingLayerID
-      value: 982194621
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5927056064078276685, guid: a4ec07059ec609847b59caa724b7421e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8932,6 +8932,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6422db75c1eb1946a569a3cbddad2aa, type: 3}
+--- !u!82 &1024251550 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1919407125671901841, guid: 8d45308c5959c194c8a6e7facc143be4, type: 3}
+  m_PrefabInstance: {fileID: 1652110049}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1025791507
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10990,6 +10995,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4962522797081125973, guid: e6de13ed97b49954ca2c759448125515, type: 3}
+      propertyPath: batDeadSound
+      value: 
+      objectReference: {fileID: 1024251550}
     - target: {fileID: 5122052961908138766, guid: e6de13ed97b49954ca2c759448125515, type: 3}
       propertyPath: m_IsActive
       value: 0

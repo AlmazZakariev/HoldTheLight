@@ -8,6 +8,7 @@ public class MobAreaPatroler : MonoBehaviour
     public float speed;
     public Animator animator;
     public float maxPointTime = 5;
+    public AudioSource batAttackSound;
 
     Status status;
     Transform playerTransform;
@@ -80,6 +81,7 @@ public class MobAreaPatroler : MonoBehaviour
         isAttacking = true;
         nextAttackTime = Time.time + attackDelay;
         attackFinishTime = Time.time + attackDuration;
+        batAttackSound.Play();
     }
 
     private void finishAttack()

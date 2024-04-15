@@ -215,10 +215,10 @@ public class PlayerController : MonoBehaviour
     {
         gameOver = true;
         //speed = 0;
-        movingSpeed = 0;
-        jumpForce = 0;
-        jumpStats.SetZeroVelocity();
-        playerRb.gravityScale = 0;
+        //movingSpeed = 0;
+        //jumpForce = 0;
+        //jumpStats.SetZeroVelocity();
+        //playerRb.gravityScale = 0;
         animator.gameObject.SetActive(false);
     }
     private void OnCollisionEnter2D(Collision2D collision)
