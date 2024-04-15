@@ -6415,6 +6415,7 @@ MonoBehaviour:
 
 
     PRESS F TO CONTINUE'
+  small: 0
 --- !u!61 &268721553
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8240,8 +8241,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0069000125, y: 0.005949974, z: 0}
-    m_Extent: {x: 1.3727, y: 1.37175, z: 0}
+    m_Center: {x: 0.0021499991, y: -0.0024499893, z: 0}
+    m_Extent: {x: 1.37535, y: 1.37275, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 7.54
@@ -8394,6 +8395,7 @@ MonoBehaviour:
 
 
     PRESS F TO CONTINUE'
+  small: 0
 --- !u!61 &685483538
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9132,7 +9134,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7045079261994322828, guid: 62f09335267e77f44b374f1544ead75c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.4
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 7045079261994322828, guid: 62f09335267e77f44b374f1544ead75c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10354,6 +10356,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3348718217900183885, guid: 8d45308c5959c194c8a6e7facc143be4, type: 3}
+      propertyPath: bgSize
+      value: 22.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3348718217900183885, guid: 8d45308c5959c194c8a6e7facc143be4, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 41247861}
@@ -10393,6 +10399,10 @@ PrefabInstance:
       propertyPath: backgroundImg
       value: 
       objectReference: {fileID: 6419705189509543860, guid: a4ec07059ec609847b59caa724b7421e, type: 3}
+    - target: {fileID: 3348718217900183885, guid: 8d45308c5959c194c8a6e7facc143be4, type: 3}
+      propertyPath: nextYPosition
+      value: 22.2
+      objectReference: {fileID: 0}
     - target: {fileID: 3348718217900183885, guid: 8d45308c5959c194c8a6e7facc143be4, type: 3}
       propertyPath: lightBlinkPower
       value: 0.1
@@ -10812,6 +10822,7 @@ MonoBehaviour:
 
     PRESS
     F TO CONTINUE'
+  small: 0
 --- !u!61 &2006283857
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11234,7 +11245,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8031946931557253709, guid: 0039fa5f68378cb48be13613ac451ba2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.853
+      value: 1.262
       objectReference: {fileID: 0}
     - target: {fileID: 8031946931557253709, guid: 0039fa5f68378cb48be13613ac451ba2, type: 3}
       propertyPath: m_LocalPosition.y

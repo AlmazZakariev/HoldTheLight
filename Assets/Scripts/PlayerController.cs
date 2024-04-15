@@ -47,14 +47,16 @@ public class PlayerController : MonoBehaviour
     public AudioSource jumpSound;
     public AudioSource pickUpSound;
 
-    // Start is called before the first frame update
+
+    
+    private CameraFollow cameraFollowScript;
 
 
     public void onAttacked()
     {
         gameManager.GameOver();
     }
-
+    // Start is called before the first frame update
     void Start()
     {
     
@@ -64,6 +66,7 @@ public class PlayerController : MonoBehaviour
 
         playerAttackScript = GameObject.Find("Player").GetComponent<PlayerAttack>();
         //messageManager = GameObject.Find("Message").GetComponent<MessageManager>();
+        cameraFollowScript = GameObject.Find("Main Camera").GetComponent<CameraFollow>();
     }
 
     // Update is called once per frame
@@ -88,7 +91,7 @@ public class PlayerController : MonoBehaviour
             //playerRb.AddForce(Vector3.down * speed, ForceMode2D.Force);
         }
         // Активация прыжка, сам прыжок исполняется из FixedUpdate
-        if (!jumpStats.IsNeedMakeJump(false) && Input.GetKeyDown(KeyCode.Space)&& !jumpStats.IsJumping())
+        if (!jumpStats.IsNeedMakeJump(false) && Input.GetKeyDown(KeyCode.Space)&& !jumpStats.IsJumping()&& cameraFollowScript.VerticalScene)
         {
             jumpStats.SetNeedMakeJump();
         }
@@ -108,7 +111,7 @@ public class PlayerController : MonoBehaviour
         transform.Translate(Vector3.right * Time.deltaTime * horizontalInput * movingSpeed);
 
         //Активация ускорения вниз
-        if (!jumpStats.IsNeedFroceDown(false) && Input.GetKeyDown(KeyCode.S) && !jumpStats.IsForcingDown())
+        if (!jumpStats.IsNeedFroceDown(false) && Input.GetKeyDown(KeyCode.S) && !jumpStats.IsForcingDown() && cameraFollowScript.VerticalScene)
         {
             jumpStats.ForcingDown = true;
             Invoke("StopForcingDown", forcingTime);

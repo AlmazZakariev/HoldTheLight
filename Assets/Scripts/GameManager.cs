@@ -9,6 +9,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public int lvlNum;
     public float maxLight = 30f;
     public float currentLight;
     //соотношение текущего света к максимальному. 

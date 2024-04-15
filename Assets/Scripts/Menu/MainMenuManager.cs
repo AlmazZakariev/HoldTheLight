@@ -17,6 +17,7 @@ public class MainMenuManager : MonoBehaviour
     }
     private void Start()
     {
+        Screen.SetResolution(607, 1080, false);
         var showEducationTugle = showEducationToggleGO.GetComponent<Toggle>();
         ShowEducation = showEducationTugle.isOn;
     }
