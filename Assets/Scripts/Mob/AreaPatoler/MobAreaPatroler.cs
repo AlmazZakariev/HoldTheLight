@@ -1,16 +1,21 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MobAreaPatroler : MonoBehaviour
 {
     public GameObject patrolingArea;
     public float speed;
     public Animator animator;
+    public float maxPointTime = 5;
 
     Status status;
     Transform playerTransform;
     PatrolingAreaPointOperations patrolingAreaPointOperations;
     float minDistanceToPoint = 1;
+    float nextPointTime = 0f;
+
+    NavMeshAgent agent;
 
     #region ATTACK PARAMS
     public float attackDelay = 2f;
@@ -29,6 +34,9 @@ public class MobAreaPatroler : MonoBehaviour
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         status = Status.PATROLING;
         patrolingAreaPointOperations = new PatrolingAreaPointOperations(patrolingArea, StartCoroutine);
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
     }
 
     void Update()
@@ -102,16 +110,19 @@ public class MobAreaPatroler : MonoBehaviour
     {
         if (patrolingAreaPointOperations.isPointReady())
         {
-            if (isPointReached())
+            if (isPointReached() || Time.time >= nextPointTime)
             {
                 patrolingAreaPointOperations.generateRandomPoint();
+                nextPointTime = Time.time + maxPointTime;
             }
             else
             {
-                turnFaceInPointDirection(patrolingAreaPointOperations.getCurrentPoint().x);
-                animator.SetFloat("HorizontalMove", Mathf.Abs(transform.position.x - patrolingAreaPointOperations.getCurrentPoint().x) * speed * Time.deltaTime);
-                transform.position = Vector2.MoveTowards(transform.position,
-                    patrolingAreaPointOperations.getCurrentPoint(), speed * Time.deltaTime);
+                //turnFaceInPointDirection(patrolingAreaPointOperations.getCurrentPoint().x);
+                //animator.SetFloat("HorizontalMove", Mathf.Abs(transform.position.x - patrolingAreaPointOperations.getCurrentPoint().x) * speed * Time.deltaTime);
+                //transform.position = Vector2.MoveTowards(transform.position,
+                //    patrolingAreaPointOperations.getCurrentPoint(), speed * Time.deltaTime);
+
+                move(patrolingAreaPointOperations.getCurrentPoint());
             }
         }
     }
@@ -130,10 +141,26 @@ public class MobAreaPatroler : MonoBehaviour
 
     private void doFollowPlayer()
     {
-        turnFaceInPointDirection(playerTransform.position.x);
-        animator.SetFloat("HorizontalMove", Mathf.Abs((playerTransform.position - transform.position).x) * speed * Time.deltaTime);
-        transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, speed * Time.deltaTime);
+        //turnFaceInPointDirection(playerTransform.position.x);
+        //animator.SetFloat("HorizontalMove", Mathf.Abs((playerTransform.position - transform.position).x) * speed * Time.deltaTime);
+        //transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, speed * Time.deltaTime);
+
+        move(playerTransform.position);
         
+    }
+
+    private void move(Vector2 pos) {
+        turnFaceInPointDirection(pos.x);
+        animator.SetFloat("HorizontalMove", Mathf.Abs((pos - (Vector2)transform.position).x) * speed * Time.deltaTime);
+
+        if (agent.isActiveAndEnabled && agent.isOnNavMesh)
+        {
+            agent.SetDestination(pos);
+        } 
+        else
+        {
+            transform.position = Vector2.MoveTowards(transform.position, pos, speed * Time.deltaTime);
+        }
     }
 
     private bool isPlayerInsidePatrolingArea()
