@@ -20157,6 +20157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23a8ce8009e8e0746b9d255e10550d9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backGroundSound: {fileID: 2523443405707629635, guid: 04c55fb0ec73d9d4a8e1914b0069aaf5, type: 3}
   desertSound: {fileID: 930259314}
 --- !u!61 &1811174195
 BoxCollider2D:
