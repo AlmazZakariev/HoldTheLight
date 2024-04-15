@@ -5,11 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class LvlTransition : MonoBehaviour
 {
-    public int sceneNum;
+    
     public GameObject panel;
-    public void ChangeScene(int scene)
+    public void ChangeScene()
     {
-        SceneManager.LoadScene(scene);
+        try
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        catch
+        {
+            
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
