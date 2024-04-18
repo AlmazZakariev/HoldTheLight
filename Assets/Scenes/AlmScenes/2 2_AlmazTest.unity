@@ -6900,6 +6900,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1365240884}
     - target: {fileID: 8580508296814702749, guid: 62f09335267e77f44b374f1544ead75c, type: 3}
+      propertyPath: offsetY
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8580508296814702749, guid: 62f09335267e77f44b374f1544ead75c, type: 3}
       propertyPath: VerticalScene
       value: 1
       objectReference: {fileID: 0}

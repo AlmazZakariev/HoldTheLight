@@ -9,7 +9,7 @@ public class CameraFollow : MonoBehaviour
     [SerializeField]
     public bool VerticalScene;
     [SerializeField]
-    private float offsetY  = 2.94f;
+    private float offsetY  = 3f;
     [SerializeField]
     private Vector3 offset;
     // Start is called before the first frame update
@@ -25,7 +25,7 @@ public class CameraFollow : MonoBehaviour
         if (VerticalScene)
         {
             //на вертикальном уровне камера следует только по оси Y
-            position.y = offset.y + player.transform.position.y;        
+            position.y = -offset.y + player.transform.position.y;        
         }
         else
         {
@@ -37,7 +37,7 @@ public class CameraFollow : MonoBehaviour
     }
     void SetOffset()
     {      
-        offset =  transform.position + player.transform.position;
-        //offset.y = offsetY;
+        offset =   player.transform.position- transform.position;
+        offset.y = offsetY;
     }
 }

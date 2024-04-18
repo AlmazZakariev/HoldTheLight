@@ -1,5 +1,4 @@
 using UnityEngine;
-//TODO: баг. Если прыгнуть в самом начале, прыжок не кончается
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D playerRb;
@@ -25,7 +24,6 @@ public class PlayerController : MonoBehaviour
     public GameObject attackLight;
 
     public Animator animator;
-    private LastYPos lastYPos = new LastYPos();
     private JumpStats jumpStats;
 
     private bool gameOver = false;
@@ -59,7 +57,6 @@ public class PlayerController : MonoBehaviour
         jumpStats =  new JumpStats(playerRb);
 
         playerAttackScript = GameObject.Find("Player").GetComponent<PlayerAttack>();
-        //messageManager = GameObject.Find("Message").GetComponent<MessageManager>();
         cameraFollowScript = GameObject.Find("Main Camera").GetComponent<CameraFollow>();
     }
 
@@ -67,19 +64,17 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         
-        if (gameOver)
-        {
-            return;
-        }
+        //if (gameOver)
+        //{
+        //    return;
+        //}
+
+        //контроль максимальной скорости
         var currentMaxSpeed = SetCurrentMaxSpeed();
-        currentSpeed = playerRb.velocity.y;
-        // Свободное падения вниз     
-        //if (jumpStats.PlayerState == PlayerState.Falling)
+        currentSpeed = playerRb.velocity.y;     
+        if (playerRb.velocity.y<-maxSpeed)
         {
-            if (playerRb.velocity.y<-maxSpeed)
-            {
-                SetYVelocity(-currentMaxSpeed);
-            }
+            SetYVelocity(-currentMaxSpeed);
         }
         // Активация прыжка, сам прыжок исполняется из FixedUpdate
         if (Input.GetKeyDown(KeyCode.Space) && !jumpStats.NeedMakeJump && jumpStats.PlayerState != PlayerState.Jumping && cameraFollowScript.VerticalScene)
@@ -108,7 +103,6 @@ public class PlayerController : MonoBehaviour
         {
             MakeFroceDown();
         }
-
         animator.SetBool("OnGround", Mathf.Abs(currentSpeed)<0.01);
         animator.SetFloat("HorizontalMove", Mathf.Abs(horizontalInput));
         if(horizontalInput> 0&& facingLeft)
@@ -123,7 +117,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F) && Time.timeScale != 1)
         {
             MessageManager.disableMessageEvent?.Invoke();
-
         }
     }
     private void Flip()
@@ -145,10 +138,10 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (gameOver)
-        {
-            return;
-        }
+        //if (gameOver)
+        //{
+        //    return;
+        //}
         // Проверяем закончился ли импульс прыжка, чтобы продолжить падение.
         if (jumpStats.PlayerState == PlayerState.Jumping)
         {
@@ -165,8 +158,6 @@ public class PlayerController : MonoBehaviour
             playerRb.AddForce(Vector2.down * forceDownSpeed, ForceMode2D.Force);
 
         }
-        // Запоминаем координату Y для определения направления
-        lastYPos.SetNext(transform.position.y);
     }
     private void MakeForceAble()
     {
@@ -210,7 +201,7 @@ public class PlayerController : MonoBehaviour
     }
     private void JumpingEnded()
     {
-        if (!lastYPos.Direction2(transform.position.y))
+        if (playerRb.velocity.y<=0)
         {
             jumpStats.PlayerState = PlayerState.Falling;
         }
@@ -241,7 +232,6 @@ public class PlayerController : MonoBehaviour
             gameManager.GameOver();
         }
     }
-    
     private void OnCollisionExit2D(Collision2D collision)
     {
         // Для проверки выхода из платформы
@@ -258,27 +248,5 @@ public class PlayerController : MonoBehaviour
         {
             pickUpSound.Play();
         }
-    }
-}
-// Класс для определения направления полёта плеера
-// Надо тестить больше, но вроде Direction2 работает норм
-class LastYPos
-{
-    float PrevY { get; set; }
-    float PrevPrevY { get; set; }
-    // При каждом update меняем позапрошлую координату Y на прошлую, а в прошлую записываем текущую. 
-    public void SetNext(float next)
-    {
-        PrevPrevY = PrevY;
-        PrevY = next;
-    }
-    //returns true when jumping, false when falling
-    public bool Direction()
-    {
-        return PrevY > PrevPrevY;
-    }
-    public bool Direction2(float currY)
-    {
-        return currY > PrevPrevY;
     }
 }
