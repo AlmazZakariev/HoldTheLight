@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
     
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         playerRb = GetComponent<Rigidbody2D>();
-        jumpStats = new JumpStats(playerRb);
+        jumpStats =  new JumpStats(playerRb);
 
         playerAttackScript = GameObject.Find("Player").GetComponent<PlayerAttack>();
         //messageManager = GameObject.Find("Message").GetComponent<MessageManager>();
@@ -80,22 +80,22 @@ public class PlayerController : MonoBehaviour
         var currentMaxSpeed = SetCurrentMaxSpeed();
         currentSpeed = playerRb.velocity.y;
         // Свободное падения вниз     
-        if (!jumpStats.IsJumping()&&falling)
+        if (!jumpStats.Jumping && falling)
         {
             if (playerRb.velocity.y<-maxSpeed)
             {
-                jumpStats.SetZeroVelocity(-currentMaxSpeed);
+                jumpStats.SetYVelocity(-currentMaxSpeed);
             }
             
             //transform.Translate(Vector3.down * Time.deltaTime * speed);
             //playerRb.AddForce(Vector3.down * speed, ForceMode2D.Force);
         }
         // Активация прыжка, сам прыжок исполняется из FixedUpdate
-        if (!jumpStats.IsNeedMakeJump(false) && Input.GetKeyDown(KeyCode.Space)&& !jumpStats.IsJumping()/*&& cameraFollowScript.VerticalScene*/)
+        if (!jumpStats.NeedMakeJump && Input.GetKeyDown(KeyCode.Space)&& !jumpStats.Jumping/*&& cameraFollowScript.VerticalScene*/)
         {
             if (cameraFollowScript.VerticalScene)
             {
-                jumpStats.SetNeedMakeJump();
+                jumpStats.NeedMakeJump = true;
             }
             
         }
@@ -119,7 +119,7 @@ public class PlayerController : MonoBehaviour
         //transform.Translate(Vector3.right * Time.deltaTime * horizontalInput * movingSpeed);
 
         //Активация ускорения вниз
-        if (!jumpStats.IsNeedFroceDown(false) && Input.GetKeyDown(KeyCode.S) && !jumpStats.IsForcingDown() && cameraFollowScript.VerticalScene&&forcingDownAvalable)
+        if (!jumpStats.IsNeedFroceDownAndForceDownIfNeed() && Input.GetKeyDown(KeyCode.S) && !jumpStats.ForcingDown && cameraFollowScript.VerticalScene&&forcingDownAvalable)
         {
             MakeFroceDown();
         }
@@ -151,7 +151,7 @@ public class PlayerController : MonoBehaviour
     }
     private float SetCurrentMaxSpeed()
     {
-        if (jumpStats.IsForcingDown())
+        if (jumpStats.ForcingDown)
         {
             return forcingDownMaxSpeed;
         }
@@ -165,17 +165,17 @@ public class PlayerController : MonoBehaviour
             return;
         }
         // Проверяем закончился ли импульс прыжка, чтобы продолжить падение.
-        if (jumpStats.IsJumping())
+        if (jumpStats.Jumping)
         {
             JumpingEnded();
         }
         // Исполнение прыжка
-        if (jumpStats.IsNeedMakeJump(true)&&!jumpStats.IsJumping())
+        if (jumpStats.IsNeedMakeJumpAndJumpIfNeed()&& !jumpStats.Jumping)
         {
             MakeOneJump(jumpForce);
         }
         // форс фниз
-        if (jumpStats.IsForcingDown())
+        if (jumpStats.ForcingDown)
         {
             playerRb.AddForce(Vector2.down * forceDownSpeed, ForceMode2D.Force);
             
@@ -224,18 +224,12 @@ public class PlayerController : MonoBehaviour
     {
         if (!lastYPos.Direction2(transform.position.y))
         {
-           // playerRb.gravityScale = 0;
-            jumpStats.TurnOff();
+            jumpStats.Jumping = false;
         }
     }
     public void GameOver()
     {
         gameOver = true;
-        //speed = 0;
-        //movingSpeed = 0;
-        //jumpForce = 0;
-        //jumpStats.SetZeroVelocity();
-        //playerRb.gravityScale = 0;
         animator.gameObject.SetActive(false);
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -261,20 +255,14 @@ public class PlayerController : MonoBehaviour
         {
             falling = true;
             
-        }
-
-        
+        } 
     }
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        // Для проверки попадания на платформу
-
         // Для проверки подбора батарейки
         if (collider.gameObject.CompareTag("Battery"))
         {
             pickUpSound.Play();
-            
-
         }
     }
 }
@@ -298,95 +286,5 @@ class LastYPos
     public bool Direction2(float currY)
     {
         return currY > PrevPrevY;
-    }
-}
-// Класс хранит все переменные, связанные с прыжком
-class JumpStats
-{
-    Rigidbody2D PlayerRb { get; set; }
-    // Состояние прыжка в данные момент
-    bool Jumping { get; set; }
-    // Для активации прыжка
-    bool NeedMakeJump { get; set; }
-    public bool ForcingDown { get; set; } = false;
-    bool NeedForceDown { get; set; }
-    public JumpStats(Rigidbody2D playerRb)
-    {
-        PlayerRb = playerRb;
-        Jumping = false;
-        NeedMakeJump = false;
-    }
-    // Вызываем при начале прыжка.
-    // Включется гравитация и состояние прыжка
-    public void TurnOn()
-    {
-        //PlayerRb.gravityScale = gravityMod;
-        SetZeroVelocity();
-        Jumping = true;      
-    }
-    // Вызываем при завершении прыжка
-    public void TurnOff()
-    {
-        //PlayerRb.gravityScale = 0;
-        Jumping = false;
-        //SetZeroVelocity();
-    }
-    public void SetZeroVelocity(float speed = 0)
-    {
-        var velocity = PlayerRb.velocity;
-        velocity.y = speed;
-        PlayerRb.velocity = velocity;
-    }
-    // Возвращаем состояние прыжка
-    public bool IsJumping()
-    {
-        return Jumping;
-    }
-    // Возвращаем ключ активации прыжка
-    public bool IsNeedMakeJump(bool reset)
-    {
-        // reset - ебейший костыль
-        // Если вызывается reset = false, то мы просто возвращаем ключ
-        // Если вызывается reset = true,  то возвращаем состояние NeedMakeJump
-        // если NeedMakeJump = true, то меняем на false
-        if (reset)
-        {   if (NeedMakeJump)
-            {
-                NeedMakeJump = false;
-                return true;
-            }
-            return false;
-        }
-        else
-        {
-            return NeedMakeJump;
-        }
-
-    }
-
-    public void SetNeedMakeJump()
-    {
-        NeedMakeJump = true;
-    }
-
-    public bool IsNeedFroceDown(bool reset)
-    {
-        if (reset)
-        {
-            if (NeedForceDown)
-            {
-                NeedForceDown = false;
-                return true;
-            }
-            return false;
-        }
-        else
-        {
-            return NeedForceDown;
-        }
-    }
-    public bool IsForcingDown()
-    {
-        return ForcingDown;
     }
 }
