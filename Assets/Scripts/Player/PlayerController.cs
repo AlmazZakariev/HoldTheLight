@@ -91,9 +91,13 @@ public class PlayerController : MonoBehaviour
             //playerRb.AddForce(Vector3.down * speed, ForceMode2D.Force);
         }
         // Активация прыжка, сам прыжок исполняется из FixedUpdate
-        if (!jumpStats.IsNeedMakeJump(false) && Input.GetKeyDown(KeyCode.Space)&& !jumpStats.IsJumping()&& cameraFollowScript.VerticalScene)
+        if (!jumpStats.IsNeedMakeJump(false) && Input.GetKeyDown(KeyCode.Space)&& !jumpStats.IsJumping()/*&& cameraFollowScript.VerticalScene*/)
         {
-            jumpStats.SetNeedMakeJump();
+            if (cameraFollowScript.VerticalScene)
+            {
+                jumpStats.SetNeedMakeJump();
+            }
+            
         }
        
         // Барьер слева

@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public GameObject player;
-    public Vector3 offset;
+    [SerializeField]
+    private GameObject player;
+    [SerializeField]
     public bool VerticalScene;
-   
+    [SerializeField]
+    private float offsetY  = 2.94f;
+
+    private Vector3 offset;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,12 +23,13 @@ public class CameraFollow : MonoBehaviour
     {
         var position = transform.position;
         if (VerticalScene)
-        { 
-            position.y = -offset.y + player.transform.position.y;
-            
+        {
+            //на вертикальном уровне камера следует только по оси Y
+            position.y = -offset.y + player.transform.position.y;        
         }
         else
         {
+            //на горизонтальном уровне камера следует только по оси X
             position.x = -offset.x + player.transform.position.x;
         }
         transform.position = position;
@@ -32,8 +37,7 @@ public class CameraFollow : MonoBehaviour
     }
     void SetOffset()
     {      
-
-        offset = player.transform.position- transform.position;
-       offset.y = 2.94f;
+        offset =  transform.position - player.transform.position;
+        //offset.y = offsetY;
     }
 }
