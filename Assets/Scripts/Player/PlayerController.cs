@@ -29,10 +29,6 @@ public class PlayerController : MonoBehaviour
     private JumpStats jumpStats;
 
     private bool gameOver = false;
-    // Ключ добавлен вместе с реакцией на платформу.
-    // Переводим на ложь, пока на платформе. И вместе с этим отключаем движенеи вниз
-    // После выхода из платформы возвращаем обратно на истину.
-    private bool falling = true;
 
     // gameManager для управления количеством света от подбора батарейки. 
     private GameManager gameManager;
@@ -42,8 +38,6 @@ public class PlayerController : MonoBehaviour
     //для звуков
     public AudioSource jumpSound;
     public AudioSource pickUpSound;
-
-
     
     private CameraFollow cameraFollowScript;
 
@@ -80,24 +74,17 @@ public class PlayerController : MonoBehaviour
         var currentMaxSpeed = SetCurrentMaxSpeed();
         currentSpeed = playerRb.velocity.y;
         // Свободное падения вниз     
-        if (!jumpStats.Jumping && falling)
+        //if (jumpStats.PlayerState == PlayerState.Falling)
         {
             if (playerRb.velocity.y<-maxSpeed)
             {
-                jumpStats.SetYVelocity(-currentMaxSpeed);
+                SetYVelocity(-currentMaxSpeed);
             }
-            
-            //transform.Translate(Vector3.down * Time.deltaTime * speed);
-            //playerRb.AddForce(Vector3.down * speed, ForceMode2D.Force);
         }
         // Активация прыжка, сам прыжок исполняется из FixedUpdate
-        if (!jumpStats.NeedMakeJump && Input.GetKeyDown(KeyCode.Space)&& !jumpStats.Jumping/*&& cameraFollowScript.VerticalScene*/)
+        if (Input.GetKeyDown(KeyCode.Space) && !jumpStats.NeedMakeJump && jumpStats.PlayerState != PlayerState.Jumping && cameraFollowScript.VerticalScene)
         {
-            if (cameraFollowScript.VerticalScene)
-            {
-                jumpStats.NeedMakeJump = true;
-            }
-            
+            jumpStats.NeedMakeJump = true; 
         }
        
         // Барьер слева
@@ -115,11 +102,9 @@ public class PlayerController : MonoBehaviour
         var playerVelocity = playerRb.velocity;
         playerVelocity.x = horizontalInput * movingSpeed;
         playerRb.velocity = playerVelocity;
-        //playerRb.AddForce(Vector2.right * horizontalInput* movingSpeed, ForceMode2D.Force);
-        //transform.Translate(Vector3.right * Time.deltaTime * horizontalInput * movingSpeed);
 
         //Активация ускорения вниз
-        if (!jumpStats.IsNeedFroceDownAndForceDownIfNeed() && Input.GetKeyDown(KeyCode.S) && !jumpStats.ForcingDown && cameraFollowScript.VerticalScene&&forcingDownAvalable)
+        if (!jumpStats.IsNeedFroceDownAndForceDownIfNeed() && Input.GetKeyDown(KeyCode.S) && jumpStats.PlayerState != PlayerState.ForcingDown && cameraFollowScript.VerticalScene&&forcingDownAvalable)
         {
             MakeFroceDown();
         }
@@ -151,7 +136,7 @@ public class PlayerController : MonoBehaviour
     }
     private float SetCurrentMaxSpeed()
     {
-        if (jumpStats.ForcingDown)
+        if (jumpStats.PlayerState == PlayerState.ForcingDown)
         {
             return forcingDownMaxSpeed;
         }
@@ -165,22 +150,21 @@ public class PlayerController : MonoBehaviour
             return;
         }
         // Проверяем закончился ли импульс прыжка, чтобы продолжить падение.
-        if (jumpStats.Jumping)
+        if (jumpStats.PlayerState == PlayerState.Jumping)
         {
             JumpingEnded();
         }
         // Исполнение прыжка
-        if (jumpStats.IsNeedMakeJumpAndJumpIfNeed()&& !jumpStats.Jumping)
+        if (jumpStats.IsNeedMakeJumpAndJumpIfNeed()&& jumpStats.PlayerState != PlayerState.Jumping)
         {
             MakeOneJump(jumpForce);
         }
         // форс фниз
-        if (jumpStats.ForcingDown)
+        if (jumpStats.PlayerState == PlayerState.ForcingDown)
         {
             playerRb.AddForce(Vector2.down * forceDownSpeed, ForceMode2D.Force);
-            
+
         }
-        
         // Запоминаем координату Y для определения направления
         lastYPos.SetNext(transform.position.y);
     }
@@ -190,11 +174,11 @@ public class PlayerController : MonoBehaviour
     }
     private void StopForcingDown()
     {
-        jumpStats.ForcingDown = false;
+        jumpStats.PlayerState = PlayerState.Falling;
     }
     private void MakeFroceDown()
     {
-        jumpStats.ForcingDown = true;
+        jumpStats.PlayerState = PlayerState.ForcingDown;
         Invoke("StopForcingDown", forcingTime);
         forcingDownAvalable = false;
         Invoke("MakeForceAble", forceDownCoolDown);
@@ -205,15 +189,19 @@ public class PlayerController : MonoBehaviour
         {
             jumpSound.Play();
 
-            jumpStats.TurnOn();
+            SetYVelocity();
+            jumpStats.PlayerState = PlayerState.Jumping;
             playerRb.AddForce(Vector3.up * speed, ForceMode2D.Impulse);
-            
 
             // атака
-            playerAttackScript.attackLightActive = true;
-            attackLight.SetActive(true);
-            Invoke("TurnOffAttackLight", attackLightTime);
+            MakeAttack();
         }      
+    }
+    private void MakeAttack()
+    {
+        playerAttackScript.attackLightActive = true;
+        attackLight.SetActive(true);
+        Invoke("TurnOffAttackLight", attackLightTime);
     }
     private void TurnOffAttackLight()
     {
@@ -224,8 +212,14 @@ public class PlayerController : MonoBehaviour
     {
         if (!lastYPos.Direction2(transform.position.y))
         {
-            jumpStats.Jumping = false;
+            jumpStats.PlayerState = PlayerState.Falling;
         }
+    }
+    public void SetYVelocity(float speed = 0)
+    {
+        var velocity = playerRb.velocity;
+        velocity.y = speed;
+        playerRb.velocity = velocity;
     }
     public void GameOver()
     {
@@ -237,7 +231,7 @@ public class PlayerController : MonoBehaviour
         // Для проверки попадания на платформу
         if (collision.gameObject.CompareTag("Platform"))
         {
-            falling = false;
+            jumpStats.PlayerState = PlayerState.Graunded;
         }
  
         // Для проверки удара с врагом
@@ -253,7 +247,7 @@ public class PlayerController : MonoBehaviour
         // Для проверки выхода из платформы
         if (collision.gameObject.CompareTag("Platform"))
         {
-            falling = true;
+            jumpStats.PlayerState = PlayerState.Falling;
             
         } 
     }
