@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     private JumpStats jumpStats;
 
-    private bool gameOver = false;
 
     // gameManager для управления количеством света от подбора батарейки. 
     private GameManager gameManager;
@@ -50,25 +49,18 @@ public class PlayerController : MonoBehaviour
     }
     // Start is called before the first frame update
     void Start()
-    {
-    
+    {  
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        playerRb = GetComponent<Rigidbody2D>();
-        jumpStats =  new JumpStats(playerRb);
-
         playerAttackScript = GameObject.Find("Player").GetComponent<PlayerAttack>();
         cameraFollowScript = GameObject.Find("Main Camera").GetComponent<CameraFollow>();
+
+        playerRb = GetComponent<Rigidbody2D>();
+        jumpStats =  new JumpStats(playerRb);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        //if (gameOver)
-        //{
-        //    return;
-        //}
-
         //контроль максимальной скорости
         var currentMaxSpeed = SetCurrentMaxSpeed();
         currentSpeed = playerRb.velocity.y;     
@@ -122,7 +114,6 @@ public class PlayerController : MonoBehaviour
     private void Flip()
     {
         facingLeft = !facingLeft;
-
         Vector2 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
@@ -138,10 +129,6 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //if (gameOver)
-        //{
-        //    return;
-        //}
         // Проверяем закончился ли импульс прыжка, чтобы продолжить падение.
         if (jumpStats.PlayerState == PlayerState.Jumping)
         {
@@ -214,7 +201,6 @@ public class PlayerController : MonoBehaviour
     }
     public void GameOver()
     {
-        gameOver = true;
         animator.gameObject.SetActive(false);
     }
     private void OnCollisionEnter2D(Collision2D collision)
