@@ -3,22 +3,24 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
+// need to attach into light2d
 public class PlayerAttack : MonoBehaviour
 {
-    public Transform attackPosition;
-    public LayerMask enemy;
-    public float attackRange;
+    [SerializeField]
+    private LayerMask enemyLayer;
+    [SerializeField]
+    private Transform attackPosition;
+    [SerializeField]
+    private float attackLightTime;
+    [SerializeField]
+    private float attackRangeX;
+    [SerializeField]
+    private float attackRangeY;
+    [SerializeField]
+    private AudioSource batDeadSound;
 
-    public float attackRangeX;
-    public float attackRangeY;
-    public bool attackLightActive;
-    //private GameManager gameManager;
-    public AudioSource batDeadSound;
-    // Start is called before the first frame update
-    void Start()
-    {
-        //gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-    }
+    private bool attackLightActive;
 
     // Update is called once per frame
     void Update()
@@ -28,13 +30,20 @@ public class PlayerAttack : MonoBehaviour
             Attack();
         }
     }
-    public void Attack()
+    public void StartAttack()
     {
-        
-        
-        
-        //Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPosition.position, attackRange, enemy);
-        Collider2D[] enemies = Physics2D.OverlapCapsuleAll(attackPosition.position, new Vector2(attackRangeX, attackRangeY), new CapsuleDirection2D(), enemy);
+        attackLightActive = true;
+        gameObject.SetActive(true);
+        Invoke("TurnOffAttackLight", attackLightTime);
+    }
+    private void TurnOffAttackLight()
+    {
+        gameObject.SetActive(false);
+        attackLightActive = false;
+    }
+    private void Attack()
+    {
+        Collider2D[] enemies = Physics2D.OverlapCapsuleAll(attackPosition.position, new Vector2(attackRangeX, attackRangeY), new CapsuleDirection2D(),0, enemyLayer);
         for (var i=0; i<enemies.Length;i++) 
         {
             var target = enemies[i].GameObject();
@@ -42,15 +51,12 @@ public class PlayerAttack : MonoBehaviour
             {
                 batDeadSound.Play();
                 Destroy(target);
-                
             }
-            ;
         }
     }
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(attackPosition.position, attackRange);
         Gizmos.DrawWireCube(attackPosition.position, new Vector3(attackRangeX, attackRangeY, 0));
     }
 }

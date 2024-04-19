@@ -92,13 +92,14 @@ GameObject:
   m_Component:
   - component: {fileID: 8645092307133942319}
   - component: {fileID: 4599825611753935906}
+  - component: {fileID: 3785537199949311605}
   m_Layer: 0
   m_Name: AttackLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8645092307133942319
 Transform:
   m_ObjectHideFlags: 0
@@ -148,8 +149,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0053499937, y: -0.6682501, z: 0}
-    m_Extent: {x: 1.00025, y: 1.57375, z: 0}
+    m_Center: {x: 0.0032999814, y: -0.66375005, z: 0}
+    m_Extent: {x: 0.99329996, y: 1.5682501, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -170,6 +171,26 @@ MonoBehaviour:
   - {x: -0.18111551, y: 0.37380344, z: 0}
   - {x: -0.34275925, y: 0.29818553, z: 0}
   - {x: -0.44848716, y: 0.17544526, z: 0}
+--- !u!114 &3785537199949311605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5122052961908138766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 816f1ed0a5f57bf46af6facbfacba37a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  attackPosition: {fileID: 6870020653649851408}
+  attackLightTime: 0.15
+  attackRangeX: 0.59
+  attackRangeY: 1.56
+  batDeadSound: {fileID: 0}
 --- !u!1 &5951936231643918013
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,7 +235,6 @@ GameObject:
   - component: {fileID: 7733267515518620985}
   - component: {fileID: 9088818857173652421}
   - component: {fileID: 7652249754361571129}
-  - component: {fileID: 4962522797081125973}
   - component: {fileID: 397114941331593481}
   m_Layer: 0
   m_Name: Player_2_4
@@ -342,9 +362,7 @@ MonoBehaviour:
   forceDownSpeed: 50
   forcingTime: 0.2
   forceDownCoolDown: 1.5
-  forcingDownAvalable: 1
   attackLightTime: 0.15
-  attackLight: {fileID: 5122052961908138766}
   animator: {fileID: 397114941331593481}
   jumpSound: {fileID: 0}
   pickUpSound: {fileID: 0}
@@ -393,27 +411,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6052465, y: 0.9581827}
   m_EdgeRadius: 0
---- !u!114 &4962522797081125973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8553561648258570971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 816f1ed0a5f57bf46af6facbfacba37a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackPosition: {fileID: 6870020653649851408}
-  enemy:
-    serializedVersion: 2
-    m_Bits: 8
-  attackRange: 0
-  attackRangeX: 0.59
-  attackRangeY: 1.56
-  attackLightActive: 0
-  batDeadSound: {fileID: 0}
 --- !u!95 &397114941331593481
 Animator:
   serializedVersion: 5

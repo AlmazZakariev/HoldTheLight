@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     private bool forcingDownAvalable = true;
 
     public float attackLightTime;
-    public GameObject attackLight;
+    //public GameObject attackLight;
 
     public Animator animator;
     private JumpStats jumpStats;
@@ -51,11 +51,13 @@ public class PlayerController : MonoBehaviour
     void Start()
     {  
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        playerAttackScript = GameObject.Find("Player").GetComponent<PlayerAttack>();
+        playerAttackScript = gameObject.GetComponentInChildren<PlayerAttack>();
+        GameObject.Find("AttackLight").gameObject.SetActive(false);
         cameraFollowScript = GameObject.Find("Main Camera").GetComponent<CameraFollow>();
-
+        gameObject.GetComponentInChildren<PlayerAttack>();
         playerRb = GetComponent<Rigidbody2D>();
         jumpStats =  new JumpStats(playerRb);
+        
     }
 
     // Update is called once per frame
@@ -172,20 +174,10 @@ public class PlayerController : MonoBehaviour
             playerRb.AddForce(Vector3.up * speed, ForceMode2D.Impulse);
 
             // атака
-            MakeAttack();
+            playerAttackScript.StartAttack();
         }      
     }
-    private void MakeAttack()
-    {
-        playerAttackScript.attackLightActive = true;
-        attackLight.SetActive(true);
-        Invoke("TurnOffAttackLight", attackLightTime);
-    }
-    private void TurnOffAttackLight()
-    {
-        attackLight.SetActive(false);
-        playerAttackScript.attackLightActive = false;
-    }
+    
     private void JumpingEnded()
     {
         if (playerRb.velocity.y<=0)
