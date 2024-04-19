@@ -11726,6 +11726,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3785537199949311605, guid: e6de13ed97b49954ca2c759448125515, type: 3}
+      propertyPath: batDeadSound
+      value: 
+      objectReference: {fileID: 604914041}
     - target: {fileID: 4749912769379442051, guid: e6de13ed97b49954ca2c759448125515, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.03108406

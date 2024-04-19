@@ -2,40 +2,42 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D playerRb;
-
-    public float currentSpeed;
-    public float maxSpeed = 10.0f;
-    public float forcingDownMaxSpeed = 20;
-
-    public float movingSpeed = 10.0f;
-    private float horizontalInput;
-    public float xRange = 10.0f;
-    private bool facingLeft = true;
-
-    public float jumpForce = 10.0f;
-    public float jumpCost;
-
-    public float forceDownSpeed = 3f;
-    public float forcingTime = 2;
-    public float forceDownCoolDown;
-    private bool forcingDownAvalable = true;
-
-    public float attackLightTime;
-    //public GameObject attackLight;
-
-    public Animator animator;
     private JumpStats jumpStats;
 
+    [SerializeField]
+    private float currentSpeed;
+    [SerializeField]
+    private float maxSpeed = 10.0f;
+    [SerializeField]
+    private float forcingDownMaxSpeed = 20;
+    [SerializeField]
+    private float movingSpeed = 10.0f;
+    [SerializeField]
+    private float xRange = 10.0f;
+
+    private float horizontalInput;
+    private bool facingLeft = true;
+    [SerializeField]
+    private float jumpForce = 10.0f;
+    [SerializeField]
+    private float jumpCost;
+    [SerializeField]
+    private float forceDownSpeed = 3f;
+    [SerializeField]
+    private float forcingTime = 2;
+    [SerializeField]
+    private float forceDownCoolDown;
+
+    private bool forcingDownAvalable = true;
+    [SerializeField]
+    private Animator animator;
 
     // gameManager для управления количеством света от подбора батарейки. 
     private GameManager gameManager;
     // для вызова атаки во время прыжка
     private PlayerAttack playerAttackScript;
-
     //для звуков
-    public AudioSource jumpSound;
-    public AudioSource pickUpSound;
-    
+    private AudioConroller audioConrollerScript;
     private CameraFollow cameraFollowScript;
 
 
@@ -51,13 +53,15 @@ public class PlayerController : MonoBehaviour
     void Start()
     {  
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        playerAttackScript = gameObject.GetComponentInChildren<PlayerAttack>();
-        GameObject.Find("AttackLight").gameObject.SetActive(false);
-        cameraFollowScript = GameObject.Find("Main Camera").GetComponent<CameraFollow>();
-        gameObject.GetComponentInChildren<PlayerAttack>();
+
         playerRb = GetComponent<Rigidbody2D>();
         jumpStats =  new JumpStats(playerRb);
-        
+
+        playerAttackScript = gameObject.GetComponentInChildren<PlayerAttack>();
+        GameObject.Find("AttackLight").gameObject.SetActive(false);
+
+        cameraFollowScript = GameObject.Find("Main Camera").GetComponent<CameraFollow>();
+        audioConrollerScript = GameObject.Find("GameManager").GetComponent<AudioConroller>();
     }
 
     // Update is called once per frame
@@ -167,8 +171,9 @@ public class PlayerController : MonoBehaviour
     {
         if (gameManager.AddLight(-jumpCost))
         {
-            jumpSound.Play();
-
+            // звук
+            audioConrollerScript.PlayJumpSound();
+            // прыжок
             SetYVelocity();
             jumpStats.PlayerState = PlayerState.Jumping;
             playerRb.AddForce(Vector3.up * speed, ForceMode2D.Impulse);
@@ -176,8 +181,7 @@ public class PlayerController : MonoBehaviour
             // атака
             playerAttackScript.StartAttack();
         }      
-    }
-    
+    } 
     private void JumpingEnded()
     {
         if (playerRb.velocity.y<=0)
@@ -206,7 +210,6 @@ public class PlayerController : MonoBehaviour
         // Для проверки удара с врагом
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            
             gameManager.GameOver();
         }
     }
@@ -215,8 +218,7 @@ public class PlayerController : MonoBehaviour
         // Для проверки выхода из платформы
         if (collision.gameObject.CompareTag("Platform"))
         {
-            jumpStats.PlayerState = PlayerState.Falling;
-            
+            jumpStats.PlayerState = PlayerState.Falling;          
         } 
     }
     private void OnTriggerEnter2D(Collider2D collider)
@@ -224,7 +226,8 @@ public class PlayerController : MonoBehaviour
         // Для проверки подбора батарейки
         if (collider.gameObject.CompareTag("Battery"))
         {
-            pickUpSound.Play();
+            audioConrollerScript.PlayPickUpSound();
+            //pickUpSound.Play();
         }
     }
 }

@@ -17,10 +17,15 @@ public class PlayerAttack : MonoBehaviour
     private float attackRangeX;
     [SerializeField]
     private float attackRangeY;
-    [SerializeField]
-    private AudioSource batDeadSound;
 
     private bool attackLightActive;
+    //для звуков
+    private AudioConroller audioConrollerScript;
+
+    private void Start()
+    {
+        audioConrollerScript = GameObject.Find("GameManager").GetComponent<AudioConroller>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -49,7 +54,7 @@ public class PlayerAttack : MonoBehaviour
             var target = enemies[i].GameObject();
             if (target.CompareTag("Enemy"))
             {
-                batDeadSound.Play();
+                audioConrollerScript.PlayBatDeadSound();
                 Destroy(target);
             }
         }
