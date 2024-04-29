@@ -60,6 +60,12 @@ public class MobAreaPatroler : MonoBehaviour
         bool isFollowingPlayer = isPlayerInsidePatrolingArea();
         if (isFollowingPlayer && getDistanceToPlayer() <= attackRange)
         {
+            // stop following
+            agent.SetDestination(transform.position);
+
+            turnFaceInPointDirection(playerTransform.position.x);
+
+            // attack if possible
             if (Time.time >= nextAttackTime)
             {
                 startAttack();
@@ -105,7 +111,10 @@ public class MobAreaPatroler : MonoBehaviour
 
     private float getDistanceToPlayer()
     {
-        return (playerTransform.position - transform.position).magnitude;
+
+        var d = (playerTransform.position - transform.position).magnitude;
+        Debug.Log(d);
+        return d;
     }
 
     private void doPatrol()

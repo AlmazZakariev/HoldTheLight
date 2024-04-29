@@ -153,7 +153,7 @@ MonoBehaviour:
   batAttackSound: {fileID: 2101086247169576660}
   attackDelay: 2
   attackDuration: 0.85
-  attackRange: 0.75
+  attackRange: 0.95
   attackCancelRange: 1.5
 --- !u!95 &1122989663941239056
 Animator:

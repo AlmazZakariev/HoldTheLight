@@ -398,6 +398,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8522391999201316948, guid: d6422db75c1eb1946a569a3cbddad2aa, type: 3}
+      propertyPath: m_Size.x
+      value: 1.5246004
+      objectReference: {fileID: 0}
+    - target: {fileID: 8522391999201316948, guid: d6422db75c1eb1946a569a3cbddad2aa, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.2623003
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5740,9 +5748,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 848499414}
     m_Modifications:
     - target: {fileID: -6579576272835520885, guid: 1e9815a46896cf942b46d6f7bcb23078, type: 3}
+      propertyPath: attackRange
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: -6579576272835520885, guid: 1e9815a46896cf942b46d6f7bcb23078, type: 3}
       propertyPath: patrolingArea
       value: 
       objectReference: {fileID: 743390433}
+    - target: {fileID: -6579576272835520885, guid: 1e9815a46896cf942b46d6f7bcb23078, type: 3}
+      propertyPath: attackCancelRange
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4468171248102393639, guid: 1e9815a46896cf942b46d6f7bcb23078, type: 3}
       propertyPath: m_Name
       value: Bat2
@@ -11720,11 +11736,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4749912769379442051, guid: e6de13ed97b49954ca2c759448125515, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.03108406
+      value: -0.402
       objectReference: {fileID: 0}
     - target: {fileID: 4749912769379442051, guid: e6de13ed97b49954ca2c759448125515, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0.348
       objectReference: {fileID: 0}
     - target: {fileID: 4749912769379442051, guid: e6de13ed97b49954ca2c759448125515, type: 3}
       propertyPath: m_LocalPosition.z
@@ -21018,6 +21034,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 848499414}
     m_Modifications:
+    - target: {fileID: -6579576272835520885, guid: 1e9815a46896cf942b46d6f7bcb23078, type: 3}
+      propertyPath: attackRange
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -6579576272835520885, guid: 1e9815a46896cf942b46d6f7bcb23078, type: 3}
       propertyPath: patrolingArea
       value: 
